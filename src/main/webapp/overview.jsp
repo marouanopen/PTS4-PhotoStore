@@ -10,8 +10,23 @@
 <html>
 <head>
     <title>Admin</title>
-    <script src="main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        function clickFunction(){
+            var userDiv = document.getElementById('userInfo');
+            var productDiv = document.getElementById('productInfo');
+
+            // based on condition you can change visibility
+            if(userDiv.style.display == 'block') {
+                userDiv.style.display = 'none';
+                productDiv.style.display = 'none';
+            }
+            else {
+                userDiv.style.display = 'block';
+                productDiv.style.display = 'block';
+            }
+        }
+    </script>
 </head>
 <body>
 <table style="float: left">
@@ -25,21 +40,21 @@
     </c:forEach>
 </table>
 
-<div style="float: left;" id="userInfo">
-    <p>Status: ${photographers[3].blocked}</p>
-    <p>Naam: ${photographers[3].name}</p>
-    <p>Adres: ${photographers[3].streetAddress} ${photographers[3].houseNumber}</p>
-    <p>Postcode: ${photographers[3].zipCode}</p>
-    <p>Woonplaats: ${photographers[3].city}</p>
-    <p>Emailadres: ${photographers[3].email}</p>
+<div style="display:block;float: left" id="userInfo">
+    <p>Status: ${photographers[2].blocked}</p>
+    <p>Naam: ${photographers[2].name}</p>
+    <p>Adres: ${photographers[2].streetAddress} ${photographers[2].houseNumber}</p>
+    <p>Postcode: ${photographers[2].zipCode}</p>
+    <p>Woonplaats: ${photographers[2].city}</p>
+    <p>Emailadres: ${photographers[2].email}</p>
 </div>
 
-<div id="userProducts">
+<div id="productInfo">
     <table>
         <tr>
             <th>Products</th>
         </tr>
-        <c:forEach items="${photographers[3].products}" var="Products">
+        <c:forEach items="${photographers[2].products}" var="Products">
             <td>${Products}</td>
         </c:forEach>
     </table>

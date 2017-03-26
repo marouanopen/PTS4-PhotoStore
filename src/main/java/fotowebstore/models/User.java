@@ -73,12 +73,12 @@ public class User {
     }
 
     public void changeBlockedStatus(){
-        if (blocked = true){ blocked = false; }
+        if (blocked){ blocked = false; }
         else{ blocked = true; }
     }
 
     public void changePhotographerStatus(){
-        if (photographer = true){ photographer = false; }
+        if (photographer){ photographer = false; }
         else{ photographer = true; }
     }
 
