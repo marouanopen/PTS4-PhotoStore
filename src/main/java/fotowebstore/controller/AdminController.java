@@ -1,5 +1,6 @@
 package fotowebstore.controller;
 
+import fotowebstore.models.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,11 +15,11 @@ public class AdminController {
 
     @RequestMapping("/overview")
     public ModelAndView overview(){
-        ArrayList<String> photographers = new ArrayList<String>();
-        photographers.add("Persoon1");
-        photographers.add("Persoon2");
-        photographers.add("Persoon3");
-        photographers.add("Persoon4");
+        ArrayList<User> photographers = new ArrayList<User>();
+        photographers.add(new User("Persoon1"));
+        photographers.add(new User("Persoon2"));
+        photographers.add(new User("Persoon3"));
+        photographers.add(new User("Persoon4"));
         return new ModelAndView("overview", "photographers", photographers);
     }
 }
