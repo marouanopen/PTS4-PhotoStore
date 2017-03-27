@@ -1,9 +1,0 @@
-
-qsquid:S00117"VRename this local variable name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õú—Øüÿÿÿÿ
-g
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ýØè“úÿÿÿÿ
-\squid:S2259"GNullPointerException might be thrown as 'outputStream' is nullable here(¢ÔïÌ
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
-:squid:S1166"%Either log or rethrow this exception.(ï­£Ä
-:squid:S1166"%Either log or rethrow this exception.(ï­£Ä
