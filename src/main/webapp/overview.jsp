@@ -40,8 +40,8 @@
     </c:forEach>
 </table>
 
-<div style="display:block;float: left" id="userInfo">
-    <p>Status: ${photographers[2].blocked}</p>
+<div style="display:none;float: left" id="userInfo">
+    <p>Geblokkeerd: ${photographers[2].blocked}</p>
     <p>Naam: ${photographers[2].name}</p>
     <p>Adres: ${photographers[2].streetAddress} ${photographers[2].houseNumber}</p>
     <p>Postcode: ${photographers[2].zipCode}</p>
@@ -49,7 +49,7 @@
     <p>Emailadres: ${photographers[2].email}</p>
 </div>
 
-<div id="productInfo">
+<div id="productInfo" style="display:none">
     <table>
         <tr>
             <th>Products</th>
