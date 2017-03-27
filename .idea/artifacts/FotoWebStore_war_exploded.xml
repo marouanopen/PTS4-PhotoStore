@@ -19,6 +19,8 @@
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.1" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.2.0" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:1.11.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
