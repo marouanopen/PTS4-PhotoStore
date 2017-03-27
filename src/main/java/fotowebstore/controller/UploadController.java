@@ -15,14 +15,14 @@ import java.io.*;
 @Controller
 public class UploadController {
 
-    @GetMapping(value = "/fileupload")
+    @GetMapping("/fileupload")
     public String fileupload() {
         return "fileupload";
     }
 
-    @PostMapping(value = "/uploadfile")
+    @PostMapping("/uploadfile")
     public String uploadImage(@RequestParam("image") MultipartFile file) {
-        final String sourcePath = "C:\\users\\peter\\desktop\\"; //Path needs to be changed.
+        final String sourcePath = new File(new File("").getAbsolutePath()).getParent().concat("\\images\\"); //Path needs to be changed.
         BufferedOutputStream outputStream = null;
 
         try {
@@ -42,12 +42,13 @@ public class UploadController {
         } finally {
             try {
                 //Close outputStream
-                outputStream.close();
+                if (outputStream != null) {
+                    outputStream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
         return "fileupload";
     }
 
