@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class HomeController {
 
     @RequestMapping("/")
-    public String home() {
-        return "home";
+    public ModelAndView home() {
+        return new ModelAndView("home");
     }
 
     @RequestMapping("/test")
