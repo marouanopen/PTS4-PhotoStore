@@ -10,40 +10,51 @@
 <html>
 <head>
     <title>Admin</title>
-    <script src="main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        function clickFunction(userid){
+            var userID = document.getElementById(userid);
+            var userDiv = document.getElementsByClassName(userDiv);
+
+            if(userID.style.display == 'none'){
+                userID.style.display = 'block';
+            }
+
+        }
+    </script>
 </head>
 <body>
 <table style="float: left">
 <tr>
     <th>Fotografen</th>
 </tr>
-    <c:forEach items="${photographers}" var="Photographers">
-        <tr onclick="clickFunction()">
-            <td>${Photographers}</td>
+    <c:forEach items="${photographers}" var="photographer">
+        <tr onclick="clickFunction(${photographers.indexOf(photographer)})">
+            <td>${photographer}</td>
         </tr>
     </c:forEach>
 </table>
 
-<div style="float: left;" id="userInfo">
-    <p>Status: ${photographers[3].blocked}</p>
-    <p>Naam: ${photographers[3].name}</p>
-    <p>Adres: ${photographers[3].streetAddress} ${photographers[3].houseNumber}</p>
-    <p>Postcode: ${photographers[3].zipCode}</p>
-    <p>Woonplaats: ${photographers[3].city}</p>
-    <p>Emailadres: ${photographers[3].email}</p>
-</div>
+<c:forEach items="${photographers}" var = "photographer">
+    <div style="display:none;float:left" id=${photographers.indexOf(photographer)}>
+        <p>Geblokkeerd: ${photographer.blocked}</p>
+        <p>Naam: ${photographer.name}</p>
+        <p>Adres: ${photographer.streetAddress} ${photographer.houseNumber}</p>
+        <p>Postcode: ${photographer.zipCode}</p>
+        <p>Woonplaats: ${photographer.city}</p>
+        <p>Emailadres: ${photographer.email}</p>
+    </div>
 
-<div id="userProducts">
-    <table>
-        <tr>
-            <th>Products</th>
-        </tr>
-        <c:forEach items="${photographers[3].products}" var="Products">
-            <td>${Products}</td>
-        </c:forEach>
-    </table>
-</div>
+    <div id="productInfo" style="display:none">
+        <table>
+            <tr>
+                <th>Products</th>
+            </tr>
+            <c:forEach items="${photographer.products}" var="Products">
+                <td>${Products}</td>
+            </c:forEach>
+        </table>
+    </div>
+</c:forEach>
 
 </body>
 </html>
