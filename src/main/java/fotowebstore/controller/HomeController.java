@@ -16,7 +16,6 @@ public class HomeController {
 
     @RequestMapping("/test")
     public ModelAndView test() {
-
         ArrayList<String> jemoeder = new ArrayList<String>();
         jemoeder.add("Wow");
         jemoeder.add("So");
