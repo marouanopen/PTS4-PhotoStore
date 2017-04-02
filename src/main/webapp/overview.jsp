@@ -9,39 +9,62 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
     <title>Admin</title>
     <script>
         function clickFunction(userid){
+
             var userID = document.getElementById(userid);
-            var userDiv = document.getElementsByClassName(userDiv);
-
-            if(userID.style.display == 'none'){
                 userID.style.display = 'block';
-            }
+        }
 
+        function hideDivs(){
+            for(var i = 0; len = ${photographers.size()}; i < len){
+                var usersID = document.getElementById(i.toString());
+                if(usersID.style.display == 'block')
+                usersID.style.display = 'none';
+                i++;
+            }
         }
     </script>
 </head>
 <body>
-<table style="float: left">
+<br>
+<h>Adminoverzicht</h>
+<br><br>
+<table style="width: 15px;float: left" class="table table-hover"">
 <tr>
     <th>Fotografen</th>
 </tr>
     <c:forEach items="${photographers}" var="photographer">
         <tr onclick="clickFunction(${photographers.indexOf(photographer)})">
-            <td>${photographer}</td>
+            <td class="col-md-1">${photographer}</td>
         </tr>
     </c:forEach>
 </table>
 
 <c:forEach items="${photographers}" var = "photographer">
-    <div style="display:none;float:left" id=${photographers.indexOf(photographer)}>
-        <p>Geblokkeerd: ${photographer.blocked}</p>
-        <p>Naam: ${photographer.name}</p>
-        <p>Adres: ${photographer.streetAddress} ${photographer.houseNumber}</p>
-        <p>Postcode: ${photographer.zipCode}</p>
-        <p>Woonplaats: ${photographer.city}</p>
-        <p>Emailadres: ${photographer.email}</p>
+    <div class="form-horizontal" style="display:none;float:left" id=${photographers.indexOf(photographer)}>
+        <p><b>Geblokkeerd:</b> ${photographer.blocked}</p>
+        <p><b>Naam:</b> ${photographer.name}</p>
+        <p><b>Adres:</b> ${photographer.streetAddress} ${photographer.houseNumber}</p>
+        <p><b>Postcode:</b> ${photographer.zipCode}</p>
+        <p><b>Woonplaats:</b> ${photographer.city}</p>
+        <p><b>Emailadres:</b> ${photographer.email}</p>
     </div>
 
     <div id="productInfo" style="display:none">
