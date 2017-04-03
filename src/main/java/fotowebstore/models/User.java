@@ -13,18 +13,39 @@ public class User {
 
     private String city;
     private String email;
+    private String password;
     private Boolean photographer;
     private Boolean blocked;
 
     private ArrayList<Product> products;
 
-    public User(String name, String streetAddress, int houseNumber, String zipCode, String city, String email) {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public  User() {
+        photographer = false;
+        blocked = false;
+
+        products = new ArrayList<Product>();
+    }
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+        photographer = false;
+        blocked = false;
+
+        products = new ArrayList<Product>();
+    }
+
+    public User(String name, String streetAddress, int houseNumber, String zipCode, String city, String email, String password) {
         this.name = name;
         this.streetAddress = streetAddress;
         this.houseNumber = houseNumber;
         this.zipCode = zipCode;
         this.city = city;
         this.email = email;
+        this.password = password;
         photographer = false;
         blocked = false;
 
@@ -55,6 +76,8 @@ public class User {
         return email;
     }
 
+    public String getPassword() { return password; }
+
     public Boolean getPhotographer() {
         return photographer;
     }
@@ -65,6 +88,14 @@ public class User {
 
     public ArrayList<Product> getProducts() {
         return products;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
