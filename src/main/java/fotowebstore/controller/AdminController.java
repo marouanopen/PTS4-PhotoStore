@@ -20,10 +20,10 @@ public class AdminController {
         ArrayList<User> users = new ArrayList<User>();
 
         //Testcode
-        User user1 = new User("Persoon1", "Adres1", 1, "1100","Stad1", "email@email.com");
-        User user2 = new User("Persoon2", "Adres2", 2, "1100","Stad2", "email@email.com");
-        User user3 = new User("Persoon3", "Adres3", 3, "1100","Stad3", "email@email.com");
-        User user4 = new User("Persoon4", "Adres4", 4, "1100","Stad4", "email@email.com");
+        User user1 = new User("Persoon1", "Adres1", 1, "1100","Stad1", "email@email.com", "password");
+        User user2 = new User("Persoon2", "Adres2", 2, "1100","Stad2", "email@email.com", "password");
+        User user3 = new User("Persoon3", "Adres3", 3, "1100","Stad3", "email@email.com", "password");
+        User user4 = new User("Persoon4", "Adres4", 4, "1100","Stad4", "email@email.com", "password");
 
         //Change status to true
         user1.changePhotographerStatus();
