@@ -28,6 +28,10 @@ public class Photo {
         return price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public File getPath() {
         return path;
     }
