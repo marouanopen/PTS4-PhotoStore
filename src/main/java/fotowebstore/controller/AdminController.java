@@ -32,7 +32,7 @@ public class AdminController {
 
         //Create Product for user4
         ArrayList<Photo> photos = new ArrayList<Photo>();
-        photos.add(new Photo(12));
+        //photos.add(new Photo(12));
         user4.addProduct(new Product(12, photos));
 
         //Add users to list

@@ -1,5 +1,6 @@
 package fotowebstore.controller;
 
+import fotowebstore.models.EmailHandler;
 import fotowebstore.models.SerialKey;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ public class HomeController {
         jemoeder.add(SerialKey.generate());
         jemoeder.add(SerialKey.generate());
         jemoeder.add(SerialKey.generate());
+        EmailHandler emailHandler = new EmailHandler();
+        emailHandler.send("", "Code for album", SerialKey.generate());
         return new ModelAndView("test", "jemoeder", jemoeder);
     }
 }
