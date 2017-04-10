@@ -1,12 +1,34 @@
 package fotowebstore.models;
 
-/**
- * Created by user on 26-3-2017.
- */
-public class Photo {
-    private int id;
+import java.io.File;
 
-    public Photo(int id) {
+public class Photo {
+
+    private int id;
+    private String name;
+    private double price;
+    private File path;
+
+    public Photo(int id, String name, double price, File path) {
         this.id = id;
+        this.name = name;
+        this.price = price;
+        this.path = path;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public File getPath() {
+        return path;
     }
 }
