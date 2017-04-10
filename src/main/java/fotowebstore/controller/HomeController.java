@@ -1,5 +1,6 @@
 package fotowebstore.controller;
 
+import fotowebstore.models.SerialKey;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,9 +18,9 @@ public class HomeController {
     @RequestMapping("/test")
     public ModelAndView test() {
         ArrayList<String> jemoeder = new ArrayList<String>();
-        jemoeder.add("Wow");
-        jemoeder.add("So");
-        jemoeder.add("Cool");
+        jemoeder.add(SerialKey.generate());
+        jemoeder.add(SerialKey.generate());
+        jemoeder.add(SerialKey.generate());
         return new ModelAndView("test", "jemoeder", jemoeder);
     }
 }
