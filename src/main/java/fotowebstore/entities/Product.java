@@ -1,10 +1,7 @@
-package fotowebstore.models;
+package fotowebstore.entities;
 
 import java.util.ArrayList;
 
-/**
- * Created by Arjan on 26-3-2017.
- */
 public class Product {
     private int id;
     private ArrayList<Photo> photos;

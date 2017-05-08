@@ -1,10 +1,7 @@
-package fotowebstore.models;
+package fotowebstore.entities;
 
 import java.util.ArrayList;
 
-/**
- * Created by Arjan on 25-3-2017.
- */
 public class User {
     private String name;
     private String streetAddress;
@@ -104,13 +101,11 @@ public class User {
     }
 
     public void changeBlockedStatus(){
-        if (blocked){ blocked = false; }
-        else{ blocked = true; }
+        blocked = !blocked;
     }
 
     public void changePhotographerStatus(){
-        if (photographer){ photographer = false; }
-        else{ photographer = true; }
+        photographer = !photographer;
     }
 
     public void addProduct(Product product){

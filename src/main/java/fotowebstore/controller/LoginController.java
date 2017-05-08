@@ -1,19 +1,15 @@
 package fotowebstore.controller;
 
-import fotowebstore.models.User;
+import fotowebstore.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 
-/**
- * Created by marouano on 3/27/17.
- */
 @Controller
 public class LoginController{
     private ArrayList<User> Users;

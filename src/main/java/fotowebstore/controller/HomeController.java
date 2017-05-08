@@ -1,12 +1,13 @@
 package fotowebstore.controller;
 
-import fotowebstore.models.EmailHandler;
-import fotowebstore.models.SerialKey;
+import fotowebstore.entities.EmailHandler;
+import fotowebstore.entities.SerialKey;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -22,8 +23,9 @@ public class HomeController {
         jemoeder.add(SerialKey.generate());
         jemoeder.add(SerialKey.generate());
         jemoeder.add(SerialKey.generate());
+        jemoeder.add(UUID.randomUUID().toString());
         EmailHandler emailHandler = new EmailHandler();
-        emailHandler.send("", "Code for album", SerialKey.generate());
+        //emailHandler.send("", "Code for album", SerialKey.generate());
         return new ModelAndView("test", "jemoeder", jemoeder);
     }
 }

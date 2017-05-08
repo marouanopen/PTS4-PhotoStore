@@ -1,6 +1,6 @@
 package fotowebstore.controller;
 
-import fotowebstore.models.*;
+import fotowebstore.entities.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Arjan on 25-3-2017.
- */
 @Controller
 public class AdminController {
 
@@ -43,7 +40,7 @@ public class AdminController {
 
         ArrayList<User> photographers = new ArrayList<User>();
         for (User user : users) {
-            if (user.getPhotographer() == true){
+            if (user.getPhotographer()){
                 photographers.add(user);
             }
         }

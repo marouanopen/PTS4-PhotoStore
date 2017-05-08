@@ -1,4 +1,4 @@
-package fotowebstore.models;
+package fotowebstore.entities;
 
 import java.io.File;
 

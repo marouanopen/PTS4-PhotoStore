@@ -1,4 +1,4 @@
-package fotowebstore.models;
+package fotowebstore.entities;
 
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 
