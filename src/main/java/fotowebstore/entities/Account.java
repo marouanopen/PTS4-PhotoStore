@@ -1,11 +1,9 @@
 package fotowebstore.entities;
 
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
 public class Account implements Serializable {
 
     @Id

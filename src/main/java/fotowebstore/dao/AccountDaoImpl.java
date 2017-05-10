@@ -8,25 +8,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 
+
 @Repository
+@Transactional
 public class AccountDaoImpl {
 
+    @PersistenceContext
     private EntityManager entityManager;
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    @PersistenceContext
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    @Transactional
     public void create(Long accountNr) {
         Account account = new Account(accountNr);
-        entityManager.getTransaction().begin();
         entityManager.persist(account);
-        entityManager.getTransaction().commit();
     }
 }
