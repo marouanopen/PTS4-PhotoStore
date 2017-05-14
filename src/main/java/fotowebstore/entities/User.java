@@ -1,18 +1,26 @@
 package fotowebstore.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+@Entity
+public class User implements Serializable {
+
+    @Id
+    private int ID;
     private String name;
-    private String streetAddress;
+    private String street;
     private int houseNumber;
     private String zipCode;
 
     private String city;
+    @Column(unique = true)
     private String email;
     private String password;
     private Boolean photographer;
     private Boolean blocked;
+    private Boolean admin;
 
     private ArrayList<Product> products;
 
@@ -23,6 +31,7 @@ public class User {
     public  User() {
         photographer = false;
         blocked = false;
+        admin = false;
 
         products = new ArrayList<Product>();
     }
@@ -31,13 +40,14 @@ public class User {
         this.password = password;
         photographer = false;
         blocked = false;
+        admin = false;
 
         products = new ArrayList<Product>();
     }
 
-    public User(String name, String streetAddress, int houseNumber, String zipCode, String city, String email, String password) {
+    public User(String name, String street, int houseNumber, String zipCode, String city, String email, String password) {
         this.name = name;
-        this.streetAddress = streetAddress;
+        this.street = street;
         this.houseNumber = houseNumber;
         this.zipCode = zipCode;
         this.city = city;
@@ -45,6 +55,7 @@ public class User {
         this.password = password;
         photographer = false;
         blocked = false;
+        admin = false;
 
         products = new ArrayList<Product>();
     }
@@ -53,8 +64,8 @@ public class User {
         return name;
     }
 
-    public String getStreetAddress() {
-        return streetAddress;
+    public String getStreet() {
+        return street;
     }
 
     public int getHouseNumber() {
@@ -82,6 +93,8 @@ public class User {
     public Boolean getBlocked() {
         return blocked;
     }
+
+    public Boolean getAdmin() { return admin; }
 
     public ArrayList<Product> getProducts() {
         return products;

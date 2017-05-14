@@ -61,7 +61,7 @@
     <div class="form-horizontal" style="display:none;float:left" id=${photographers.indexOf(photographer)}>
         <p><b>Geblokkeerd:</b> ${photographer.blocked}</p>
         <p><b>Naam:</b> ${photographer.name}</p>
-        <p><b>Adres:</b> ${photographer.streetAddress} ${photographer.houseNumber}</p>
+        <p><b>Adres:</b> ${photographer.street} ${photographer.houseNumber}</p>
         <p><b>Postcode:</b> ${photographer.zipCode}</p>
         <p><b>Woonplaats:</b> ${photographer.city}</p>
         <p><b>Emailadres:</b> ${photographer.email}</p>
