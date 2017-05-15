@@ -1,20 +1,18 @@
 package fotowebstore.controller;
 
-import fotowebstore.entities.*;
+import fotowebstore.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class AdminController {
 
     @RequestMapping("/overview")
     public ModelAndView overview(){
-        ArrayList<User> users = new ArrayList<User>();
+     /*   ArrayList<User> users = new ArrayList<User>();
 
         //Testcode
         User user1 = new User("Persoon1", "Adres1", 1, "1100","Stad1", "email@email.com", "password");
@@ -42,8 +40,8 @@ public class AdminController {
 
         //Niet werkende code. Test om List Users + User mee te geven aan de View
         Map<Object, ArrayList<User>> model = new HashMap<Object, ArrayList<User>>();
-        model.put(user1, users);
-
+        model.put(user1, users);*/
+        ArrayList<User> photographers = new ArrayList<User>();
         return new ModelAndView("overview", "photographers", photographers);
     }
 }

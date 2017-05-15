@@ -12,11 +12,11 @@ public interface UserDao {
 
     boolean remove(User user);
 
-    User findByEmail(String email);
+    /*User findByEmail(String email);
 
     User findById(int Id);
 
-    User findByEmailAndHash(String email, String hash);
+    User findByEmailAndHash(String email, String hash);*/
 
     List<User> findAll();
 }

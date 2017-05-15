@@ -1,33 +1,33 @@
 package fotowebstore.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.ArrayList;
 
-@Entity
+@Entity/*
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", query = "select u from user as u where u.email = :email"),
         @NamedQuery(name = "User.findById", query = "select u from user as u where u.ID = :id"),
         @NamedQuery(name = "User.findByEmailandHash", query = "select u from user as u where u.email = :email and u.password = :hash")
-})
+})*/
 public class User implements Serializable {
 
     @Id
     private int ID;
     private String name;
     private String street;
-    private int houseNumber;
+    private String houseNumber;
     private String zipCode;
 
     private String city;
-    @Column(unique = true)
+    //@Column(unique = true)
     private String email;
     private String password;
     private Boolean photographer;
     private Boolean blocked;
     private Boolean admin;
 
-    private ArrayList<Product> products = new ArrayList<Product>();
+    //private ArrayList<Product> products = new ArrayList<Product>();
 
 
     public User() {
@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(String name, String street, int houseNumber, String zipCode, String city, String email, String password) {
+    public User(String name, String street, String houseNumber, String zipCode, String city, String email, String password) {
         this.name = name;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -68,7 +68,7 @@ public class User implements Serializable {
         this.street = street;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
@@ -92,9 +92,9 @@ public class User implements Serializable {
         this.admin = admin;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
+//    public void setProducts(ArrayList<Product> products) {
+//        this.products = products;
+//    }
 
     public int getID() {
         return ID;
@@ -108,7 +108,7 @@ public class User implements Serializable {
         return street;
     }
 
-    public int getHouseNumber() {
+    public String getHouseNumber() {
         return houseNumber;
     }
 
@@ -140,13 +140,13 @@ public class User implements Serializable {
         return admin;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
-    }
+//    public ArrayList<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void addProduct(Product product) {
+//        products.add(product);
+//    }
 
     @Override
     public String toString() {
