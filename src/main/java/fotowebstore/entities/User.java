@@ -2,14 +2,15 @@ package fotowebstore.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.io.Serializable;
 
-@Entity/*
+@Entity
 @NamedQueries({
-        @NamedQuery(name = "User.findByEmail", query = "select u from user as u where u.email = :email"),
-        @NamedQuery(name = "User.findById", query = "select u from user as u where u.ID = :id"),
-        @NamedQuery(name = "User.findByEmailandHash", query = "select u from user as u where u.email = :email and u.password = :hash")
-})*/
+        @NamedQuery(name = "User.findByEmail", query = "select u from User as u where u.email = :email"),
+        @NamedQuery(name = "User.findById", query = "select u from User as u where u.ID = :id")
+})
 public class User implements Serializable {
 
     @Id
@@ -18,15 +19,14 @@ public class User implements Serializable {
     private String street;
     private String houseNumber;
     private String zipCode;
-
     private String city;
     //@Column(unique = true)
     private String email;
     private String password;
-    private Boolean photographer;
-    private Boolean blocked;
-    private Boolean admin;
-
+    private boolean photographer;
+    private boolean blocked;
+    private boolean admin;
+    private String salt;
     //private ArrayList<Product> products = new ArrayList<Product>();
 
 
@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(String name, String street, String houseNumber, String zipCode, String city, String email, String password) {
+    public User(String name, String street, String houseNumber, String zipCode, String city, String email, String password, String salt) {
         this.name = name;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -46,6 +46,7 @@ public class User implements Serializable {
         this.city = city;
         this.email = email;
         this.password = password;
+        this.salt = salt;
     }
 
     public void setName(String name) {
@@ -80,21 +81,30 @@ public class User implements Serializable {
         this.city = city;
     }
 
-    public void setPhotographer(Boolean photographer) {
+    public void setPhotographer(boolean photographer) {
         this.photographer = photographer;
     }
 
-    public void setBlocked(Boolean blocked) {
+    public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
 
-    public void setAdmin(Boolean admin) {
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 
 //    public void setProducts(ArrayList<Product> products) {
 //        this.products = products;
 //    }
+
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     public int getID() {
         return ID;
@@ -128,15 +138,15 @@ public class User implements Serializable {
         return password;
     }
 
-    public Boolean getPhotographer() {
+    public boolean getPhotographer() {
         return photographer;
     }
 
-    public Boolean getBlocked() {
+    public boolean getBlocked() {
         return blocked;
     }
 
-    public Boolean getAdmin() {
+    public boolean getAdmin() {
         return admin;
     }
 

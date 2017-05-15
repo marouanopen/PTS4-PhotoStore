@@ -1,6 +1,7 @@
 package fotowebstore.controller;
 
 import fotowebstore.util.EmailHandler;
+import fotowebstore.util.PasswordHandler;
 import fotowebstore.util.SerialKey;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,8 @@ import java.util.UUID;
 public class HomeController {
 
     @RequestMapping("/")
-    public ModelAndView home() {
-        return new ModelAndView("home");
+    public String home() {
+        return "index";
     }
 
     @RequestMapping("/test")
@@ -24,6 +25,10 @@ public class HomeController {
         jemoeder.add(SerialKey.generate());
         jemoeder.add(SerialKey.generate());
         jemoeder.add(UUID.randomUUID().toString());
+        jemoeder.add(new String(PasswordHandler.salt()));
+        jemoeder.add(new String(PasswordHandler.salt()));
+        jemoeder.add(new String(PasswordHandler.salt()));
+        jemoeder.add(new String(PasswordHandler.salt()));
         EmailHandler emailHandler = new EmailHandler();
         //emailHandler.send("", "Code for album", SerialKey.generate());
         return new ModelAndView("test", "jemoeder", jemoeder);

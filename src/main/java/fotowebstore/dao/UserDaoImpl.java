@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
@@ -48,13 +49,13 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-   /* public User findByEmail(String email) {
+    public User findByEmail(String email) {
         Query query = manager.createNamedQuery("User.findByEmail", User.class);
         query.setParameter("email", email);
         return (User) query.getSingleResult();
     }
 
-    public User findById(int Id) {
+    /*public User findById(int Id) {
         Query query = manager.createNamedQuery("User.findById", User.class);
         query.setParameter("id", Id);
         return (User) query.getSingleResult();
