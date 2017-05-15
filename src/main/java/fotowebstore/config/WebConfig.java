@@ -20,7 +20,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         resolver.setPrefix("/");
         resolver.setSuffix(".jsp");
         return resolver;
-    }
+}
 
     @Bean
     public MultipartResolver multipartResolver() {

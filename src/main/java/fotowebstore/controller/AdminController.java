@@ -22,11 +22,6 @@ public class AdminController {
         User user3 = new User("Persoon3", "Adres3", 3, "1100","Stad3", "email@email.com", "password");
         User user4 = new User("Persoon4", "Adres4", 4, "1100","Stad4", "email@email.com", "password");
 
-        //Change status to true
-        user1.changePhotographerStatus();
-        user2.changePhotographerStatus();
-        user4.changePhotographerStatus();
-
         //Create Product for user4
         ArrayList<Photo> photos = new ArrayList<Photo>();
         //photos.add(new Photo(12));

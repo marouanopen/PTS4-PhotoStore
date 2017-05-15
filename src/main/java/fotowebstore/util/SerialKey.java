@@ -1,4 +1,4 @@
-package fotowebstore.entities;
+package fotowebstore.util;
 
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 

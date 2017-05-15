@@ -1,4 +1,4 @@
-package fotowebstore.entities;
+package fotowebstore.util;
 
 import javax.mail.*;
 import javax.mail.internet.*;
