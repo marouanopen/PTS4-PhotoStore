@@ -19,12 +19,12 @@ public class TestController {
 
     @GetMapping("/account")
     public String createAccount() {
-        return "AccountCreation";
+        return "WEB-INF/AccountCreation";
     }
 
     @PostMapping("/account")
     public String createAccount(@RequestParam("accountNr") Long accountNr) {
         accountDao.create(accountNr);
-        return "AccountCreation";
+        return "WEB-INF/AccountCreation";
     }
 }

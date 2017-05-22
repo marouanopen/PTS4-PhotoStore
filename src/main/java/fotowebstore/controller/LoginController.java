@@ -28,7 +28,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "index";
+        return "WEB-INF/index";
     }
 
     @PostMapping("/login")
@@ -37,6 +37,9 @@ public class LoginController {
         String password = form.getFirst("password");
         User user = userDao.findByEmail(email);
 
+        if (user == null)
+            return new ModelAndView("WEB-INF/index", "loginStatus", LoginStatus.FAILED);
+
         if (user.getID() != 0) {
             try {
                 String salt = user.getSalt();
@@ -44,7 +47,7 @@ public class LoginController {
                 String hashedPassword = new String(PasswordHandler.hash(saltedPassword.getBytes("UTF-8")));
 
                 if (hashedPassword.equals(user.getPassword()))
-                    return new ModelAndView("overview", "user", user);
+                    return new ModelAndView("WEB-INF/overview", "user", user);
 
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -53,12 +56,12 @@ public class LoginController {
             }
         }
 
-        return new ModelAndView("index");
+        return new ModelAndView("WEB-INF/index", "loginStatus", LoginStatus.FAILED);
     }
 
     @GetMapping("/register")
     public String register() {
-        return "index";
+        return "WEB-INF/index";
     }
 
     @PostMapping("/register")
@@ -79,16 +82,16 @@ public class LoginController {
             User user = new User(name, street, houseNumber, zipCode, city, email, hashedPassword, salt);
             userDao.create(user);
 
-            return new ModelAndView("overview", "user", user);
+            return new ModelAndView("WEB-INF/overview", "user", user);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (Exception e) { //Check which exception is being thrown here.
             e.printStackTrace();
-            return new ModelAndView("index", "loginStatus", LoginStatus.DUPLICATE_EMAIL);
+            return new ModelAndView("WEB-INF/index", "loginStatus", LoginStatus.DUPLICATE_EMAIL);
         }
 
-        return new ModelAndView("index", "loginStatus", LoginStatus.FAILED);
+        return new ModelAndView("WEB-INF/index", "loginStatus", LoginStatus.FAILED);
     }
 }

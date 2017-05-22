@@ -15,7 +15,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home() {
-        return "index";
+        return "WEB-INF/index";
     }
 
     @RequestMapping("/test")
@@ -31,6 +31,6 @@ public class HomeController {
         jemoeder.add(new String(PasswordHandler.salt()));
         EmailHandler emailHandler = new EmailHandler();
         //emailHandler.send("", "Code for album", SerialKey.generate());
-        return new ModelAndView("test", "jemoeder", jemoeder);
+        return new ModelAndView("WEB-INF/test", "jemoeder", jemoeder);
     }
 }

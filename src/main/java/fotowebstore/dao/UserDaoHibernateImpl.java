@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao {
+public class UserDaoHibernateImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager manager;
@@ -52,7 +53,13 @@ public class UserDaoImpl implements UserDao {
     public User findByEmail(String email) {
         Query query = manager.createNamedQuery("User.findByEmail", User.class);
         query.setParameter("email", email);
-        return (User) query.getSingleResult();
+
+        try {
+            return (User) query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println(email + " not found.");
+            return null;
+        }
     }
 
     /*public User findById(int Id) {

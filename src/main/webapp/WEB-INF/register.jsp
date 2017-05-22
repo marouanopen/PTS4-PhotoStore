@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/login.css">
 </head>
 <body>
     <div id="register" class="animate form">

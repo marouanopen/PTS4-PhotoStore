@@ -42,6 +42,6 @@ public class AdminController {
         Map<Object, ArrayList<User>> model = new HashMap<Object, ArrayList<User>>();
         model.put(user1, users);*/
         ArrayList<User> photographers = new ArrayList<User>();
-        return new ModelAndView("overview", "photographers", photographers);
+        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
     }
 }

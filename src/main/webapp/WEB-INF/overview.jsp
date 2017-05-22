@@ -46,7 +46,7 @@
 <br>
 <h>Adminoverzicht</h>
 <br><br>
-<table style="width: 15px;float: left" class="table table-hover"">
+<table style="width: 15px;float: left" class="table table-hover">
 <tr>
     <th>Fotografen</th>
 </tr>

@@ -2,7 +2,7 @@ package fotowebstore.config;
 
 import fotowebstore.dao.AccountDaoImpl;
 import fotowebstore.dao.UserDao;
-import fotowebstore.dao.UserDaoImpl;
+import fotowebstore.dao.UserDaoHibernateImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -28,7 +28,7 @@ public class PersistenceConfig {
 
     @Bean
     public UserDao userDao() {
-        return new UserDaoImpl();
+        return new UserDaoHibernateImpl();
     }
 
     @Bean

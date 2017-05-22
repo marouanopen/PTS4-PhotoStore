@@ -17,12 +17,12 @@ public class UploadController {
 
     @GetMapping("/fileupload")
     public String fileupload() {
-        return "fileupload";
+        return "WEB-INF/fileupload";
     }
 
     @PostMapping("/uploadfile")
     public String uploadImage(@RequestParam("image") MultipartFile file) {
-        final String sourcePath = new File(new File("").getAbsolutePath()).getParent().concat("\\images\\"); //Path needs to be changed.
+        final String sourcePath = new File(new File("").getAbsolutePath()).getPath().concat("\\images\\"); //Path needs to be changed.
         BufferedOutputStream outputStream = null;
 
         try {
@@ -50,7 +50,7 @@ public class UploadController {
             }
         }
 
-        return "fileupload";
+        return "WEB-INF/fileupload";
     }
 
     private BufferedImage pixelateImage(byte[] buffer) throws IOException {

@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/login.css">
 </head>
 <body>
     <div id="login" class="animate form">
@@ -28,7 +28,7 @@
                 </table>
             <p class="change_link">
                 Not a member yet ?
-                <a href="/register.jsp" class="to_register">Join us</a>
+                <a href="/WEB-INF/register.jspster.jsp" class="to_register">Join us</a>
             </p>
         </form:form>
     </div>
