@@ -2,12 +2,14 @@ package fotowebstore.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Album {
 
     @Id
     private int ID;
+    @ManyToOne
     private User user;
     private String name;
     private boolean hidden;
