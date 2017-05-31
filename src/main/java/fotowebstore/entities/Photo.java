@@ -2,6 +2,8 @@ package fotowebstore.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Photo {
@@ -11,17 +13,18 @@ public class Photo {
     private String name;
     private double price;
     private boolean hidden;
+    @ManyToOne
+    @JoinColumn(name = "AlbumID")
+    private Album album;
 
     public Photo() {
     }
 
-    public Photo(String name, double price) {
+    public Photo(String name) {
         this.name = name;
-        this.price = price;
     }
 
-    public Photo(int id, String name, double price) {
-        this.id = id;
+    public Photo(String name, double price) {
         this.name = name;
         this.price = price;
     }

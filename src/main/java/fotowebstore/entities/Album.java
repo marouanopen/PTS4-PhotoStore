@@ -1,8 +1,7 @@
 package fotowebstore.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Album {
@@ -14,8 +13,14 @@ public class Album {
     private String name;
     private boolean hidden;
     private String voucherCode;
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
+    private Set<Photo> photos;
 
     public Album() {
+    }
+
+    public Album(String name) {
+        this.name = name;
     }
 
     public Album(User user, String name, String voucherCode) {
@@ -62,5 +67,13 @@ public class Album {
 
     public void setVoucherCode(String voucherCode) {
         this.voucherCode = voucherCode;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
     }
 }

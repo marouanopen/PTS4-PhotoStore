@@ -22,7 +22,7 @@ public class UploadController {
 
     @PostMapping("/uploadfile")
     public String uploadImage(@RequestParam("image") MultipartFile file) {
-        final String sourcePath = new File(new File("").getAbsolutePath()).getPath().concat("\\images\\"); //Path needs to be changed.
+        final String sourcePath = new File(new File("").getAbsolutePath()).getPath().concat("\\images\\");
         BufferedOutputStream outputStream = null;
 
         try {
