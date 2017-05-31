@@ -10,7 +10,6 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", query = "select u from User as u where u.email = :email"),
         @NamedQuery(name = "User.findById", query = "select u from User as u where u.ID = :id")
-       // @NamedQuery(name = "User.findPhotographerRequests", query = "select  from user inner join photographer_request on user.ID = photographer_request.userID")
 })
 public class User implements Serializable {
 

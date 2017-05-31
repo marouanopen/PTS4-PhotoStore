@@ -5,9 +5,12 @@ import fotowebstore.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.ws.rs.core.MultivaluedMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,17 +26,17 @@ public class AdminController {
 
     @GetMapping("/requests")
     public ModelAndView requests(){
-        List<User> request_users = new ArrayList<User>();
-        List<User> users = userDao.findAll();
-        for (User user: users) {
-            if (user.getPhotographer()){
-                request_users.add(user);
-            }
-        }
 
-        List<User> requesters = userDao.findPhotographerRequests();
-        return new ModelAndView("WEB-INF/requests", "users", requesters);
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
+/*
+    @PostMapping("/requests")
+    public requestSubmit(@RequestBody MultivaluedMap<String, String> form){
+
+
+
+    }*/
 
     @RequestMapping("/overview")
     public ModelAndView overview(){

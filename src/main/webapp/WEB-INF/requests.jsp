@@ -9,20 +9,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Photographer requests</title>
+    <title>Overview of users that request a photographer account</title>
 </head>
 <body>
 <h>Photographer requests</h>
 <br><br>
+<div id="request-container">
+    <form action="${pageContext.request.contextPath}/requests" method="post">
 <table>
 <tr>
-    <th>Users</th>
+    <th>Username</th>
+    <th>Request</th>
 </tr>
     <c:forEach items="${users}" var="user">
         <tr>
-            <td>${user}</td>
+            <td>${user.name}</td>
+            <td><input type="checkbox" id="check${user.ID}" name="selectedItems" value="${user}"></td>
         </tr>
     </c:forEach>
 </table>
+    </form>
+</div>
 </body>
 </html>

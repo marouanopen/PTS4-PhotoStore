@@ -82,7 +82,7 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     public List<User> findPhotographerRequests(){
-        Query query = manager.createNamedQuery("SELECT * FROM user inner join photographer_request on user.ID = photographer_request.userID");
+        Query query = manager.createNativeQuery("SELECT * FROM user inner join photographer_request on user.ID = photographer_request.userID", User.class);
         return query.getResultList();
     }
 }
