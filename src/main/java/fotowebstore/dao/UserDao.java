@@ -19,4 +19,6 @@ public interface UserDao {
     User findByEmailAndHash(String email, String hash);*/
 
     List<User> findAll();
+
+    List<User> findPhotographerRequests();
 }

@@ -80,4 +80,9 @@ public class UserDaoHibernateImpl implements UserDao {
         cq.select(cq.from(User.class));
         return manager.createQuery(cq).getResultList();
     }
+
+    public List<User> findPhotographerRequests(){
+        Query query = manager.createNamedQuery("SELECT * FROM user inner join photographer_request on user.ID = photographer_request.userID");
+        return query.getResultList();
+    }
 }
