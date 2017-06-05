@@ -15,7 +15,7 @@
 <h>Photographer requests</h>
 <br><br>
 <div id="request-container">
-    <form action="${pageContext.request.contextPath}/requests" method="post">
+    <form action="${pageContext.request.contextPath}/requests" method="post" modelAttribute="users">
 <table>
 <tr>
     <th>Username</th>
@@ -28,6 +28,7 @@
         </tr>
     </c:forEach>
 </table>
+        <input type="submit" value="Accept"/>
     </form>
 </div>
 </body>

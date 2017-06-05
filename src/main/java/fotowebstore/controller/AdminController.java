@@ -4,10 +4,8 @@ import fotowebstore.dao.UserDao;
 import fotowebstore.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -30,13 +28,15 @@ public class AdminController {
         List<User> photographerRequests = userDao.findPhotographerRequests();
         return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
-/*
+
     @PostMapping("/requests")
-    public requestSubmit(@RequestBody MultivaluedMap<String, String> form){
+    public ModelAndView requestSubmit(@RequestBody List<User> users){
 
 
-
-    }*/
+        //System.out.println(users);
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
+    }
 
     @RequestMapping("/overview")
     public ModelAndView overview(){
