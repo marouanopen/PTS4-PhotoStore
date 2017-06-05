@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>Overview of users that request a photographer account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
 </head>
 <body>
 <h>Photographer requests</h>
@@ -24,7 +27,9 @@
     <c:forEach items="${users}" var="user">
         <tr>
             <td>${user.name}</td>
-            <td><input type="checkbox" id="check${user.ID}" name="selectedItems" value="${user}"></td>
+            <!--<td><input type="checkbox" id="check${user.ID}" name="selectedItems" value="${user}"></td>-->
+            <td><a href="<c:url value="${pageContext.request.contextPath}/accept/${user.email}"/>"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+            <td><a href="<c:url value="${pageContext.request.contextPath}/deny/${user.email}"/>"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
         </tr>
     </c:forEach>
 </table>
