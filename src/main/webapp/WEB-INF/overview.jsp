@@ -67,7 +67,7 @@
         <p><b>Emailadres:</b> ${photographer.email}</p>
     </div>
 
-    <div id="productInfo" style="display:none">
+ <%---   <div id="productInfo" style="display:none">
         <table>
             <tr>
                 <th>Products</th>
@@ -77,7 +77,7 @@
             </c:forEach>
         </table>
     </div>
+--%>
 </c:forEach>
-
 </body>
 </html>

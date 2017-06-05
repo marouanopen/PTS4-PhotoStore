@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <%@include file="topbar.jsp"%>
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/account" method="POST">
