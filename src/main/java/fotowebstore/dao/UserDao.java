@@ -21,4 +21,8 @@ public interface UserDao {
     List<User> findAll();
 
     List<User> findPhotographerRequests();
+
+    boolean acceptRequest(User user);
+
+    boolean denyRequest(User user);
 }

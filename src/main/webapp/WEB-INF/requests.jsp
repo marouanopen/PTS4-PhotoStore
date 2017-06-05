@@ -18,7 +18,7 @@
 <h>Photographer requests</h>
 <br><br>
 <div id="request-container">
-    <form action="${pageContext.request.contextPath}/requests" method="post" modelAttribute="users">
+    <form>
 <table>
 <tr>
     <th>Username</th>
@@ -27,13 +27,11 @@
     <c:forEach items="${users}" var="user">
         <tr>
             <td>${user.name}</td>
-            <!--<td><input type="checkbox" id="check${user.ID}" name="selectedItems" value="${user}"></td>-->
             <td><a href="<c:url value="${pageContext.request.contextPath}/accept/${user.email}"/>"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
             <td><a href="<c:url value="${pageContext.request.contextPath}/deny/${user.email}"/>"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
         </tr>
     </c:forEach>
 </table>
-        <input type="submit" value="Accept"/>
     </form>
 </div>
 </body>
