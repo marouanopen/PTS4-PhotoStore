@@ -62,13 +62,19 @@ public class UserDaoHibernateImpl implements UserDao {
         }
     }
 
-    /*public User findById(int Id) {
+    public User findById(int Id) {
         Query query = manager.createNamedQuery("User.findById", User.class);
         query.setParameter("id", Id);
-        return (User) query.getSingleResult();
+
+        try {
+            return (User) query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println(Id + " not found.");
+            return null;
+        }
     }
 
-    public User findByEmailAndHash(String email, String hash) {
+    /*public User findByEmailAndHash(String email, String hash) {
         Query query = manager.createNamedQuery("User.findByEmailAndHash", User.class);
         query.setParameter("email", email);
         query.setParameter("hash", hash);
@@ -89,7 +95,9 @@ public class UserDaoHibernateImpl implements UserDao {
     public boolean acceptRequest(User user){
 
         try {
-
+            Query query = manager.createNativeQuery("update user set photographer = 1 where ID = :id", User.class);
+            query.setParameter("id", user.getID());
+            query.executeUpdate();
             return true;
         } catch (Exception ex){
             ex.printStackTrace();

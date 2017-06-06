@@ -22,13 +22,13 @@
 <table>
 <tr>
     <th>Username</th>
-    <th>Request</th>
+    <th>| Request</th>
 </tr>
     <c:forEach items="${users}" var="user">
         <tr>
             <td>${user.name}</td>
-            <td><a href="<c:url value="${pageContext.request.contextPath}/accept/${user.email}"/>"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
-            <td><a href="<c:url value="${pageContext.request.contextPath}/deny/${user.email}"/>"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+            <td><a href="<c:url value="${pageContext.request.contextPath}/accept/${user.ID}"/>"><span class="glyphicon glyphicon-ok-circle"></span></a></td>
+            <td><a href="<c:url value="${pageContext.request.contextPath}/deny/${user.ID}"/>"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
         </tr>
     </c:forEach>
 </table>

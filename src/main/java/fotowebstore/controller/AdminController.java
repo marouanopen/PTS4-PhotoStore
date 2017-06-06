@@ -29,15 +29,17 @@ public class AdminController {
         return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
 
-    @RequestMapping("/accept/{email}")
-    public String accept(@PathVariable("email") String email) {
-        User user = userDao.findByEmail(email + ".com");
+    @RequestMapping("/accept/{id}")
+    public String accept(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
+        userDao.denyRequest(user);
+        userDao.acceptRequest(user);
         return "WEB-INF/requests";
     }
 
-    @RequestMapping("/deny/{email}")
-    public String deny(@PathVariable("email") String email) {
-        User user = userDao.findByEmail(email + ".com");
+    @RequestMapping("/deny/{id}")
+    public String deny(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
         userDao.denyRequest(user);
         return "WEB-INF/requests";
     }
