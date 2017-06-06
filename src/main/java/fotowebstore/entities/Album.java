@@ -7,6 +7,7 @@ import java.util.Set;
 public class Album {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
     @ManyToOne
     private User user;

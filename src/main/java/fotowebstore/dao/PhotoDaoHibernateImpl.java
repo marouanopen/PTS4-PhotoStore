@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
@@ -45,6 +46,12 @@ public class PhotoDaoHibernateImpl implements PhotoDao {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public Photo find(int id) {
+        Query query = manager.createQuery("select p from Photo as p where p.id = :id");
+        query.setParameter("id", id);
+        return (Photo) query.getSingleResult();
     }
 
     public List<Photo> findAll() {

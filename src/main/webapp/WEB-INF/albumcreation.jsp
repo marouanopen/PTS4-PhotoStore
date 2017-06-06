@@ -6,5 +6,17 @@
 </head>
 <body>
 <p>${album.name}</p>
+
+<c:forEach items="${album.photos}" var="photo">
+    <div style="width: 100px; height: 100px; border: 1px solid black;">
+            ${photo.name}
+    </div>
+</c:forEach>
+
+<form method="post" action="${pageContext.request.contextPath}/uploadfile" enctype="multipart/form-data">
+    <input type="hidden" name="albumId" value="${album.ID}"/>
+    <input type="file" name="image" accept=".jpg"><br/>
+    <input type="submit" value="Upload">
+</form>
 </body>
 </html>

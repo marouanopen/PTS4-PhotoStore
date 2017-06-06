@@ -9,7 +9,7 @@
     <div style="width: 100px; height: 100px; border: 1px solid black;">
         <p>${album.name}: ${album.photos.size()}</p>
         <form action="${pageContext.request.contextPath}/photooverview" method="post">
-            <input type="hidden" name="album" value="${album}"/>
+            <input type="hidden" name="id" value="${album.ID}"/>
             <input type="submit" value="Show"/>
         </form>
     </div>

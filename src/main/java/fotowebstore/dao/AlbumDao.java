@@ -11,5 +11,7 @@ public interface AlbumDao {
 
     boolean delete(Album album);
 
+    Album find(int id);
+
     List<Album> findAll();
 }

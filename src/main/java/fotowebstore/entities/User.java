@@ -1,9 +1,6 @@
 package fotowebstore.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -14,6 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
     private String name;
     private String street;
