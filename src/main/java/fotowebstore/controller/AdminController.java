@@ -30,18 +30,21 @@ public class AdminController {
     }
 
     @RequestMapping("/accept/{id}")
-    public String accept(@PathVariable("id") int id) {
+    public ModelAndView accept(@PathVariable("id") int id) {
         User user = userDao.findById(id);
         userDao.denyRequest(user);
         userDao.acceptRequest(user);
-        return "WEB-INF/requests";
+        //user.setPhotographer(true);
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
 
     @RequestMapping("/deny/{id}")
-    public String deny(@PathVariable("id") int id) {
+    public ModelAndView deny(@PathVariable("id") int id) {
         User user = userDao.findById(id);
         userDao.denyRequest(user);
-        return "WEB-INF/requests";
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
 
     @RequestMapping("/overview")
