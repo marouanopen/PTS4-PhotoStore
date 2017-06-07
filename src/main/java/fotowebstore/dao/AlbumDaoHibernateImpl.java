@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
@@ -45,6 +46,12 @@ public class AlbumDaoHibernateImpl implements AlbumDao {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public Album find(int id) {
+        Query query = manager.createQuery("select a from Album as a where a.ID = :id");
+        query.setParameter("id", id);
+        return (Album) query.getSingleResult();
     }
 
     public List<Album> findAll() {

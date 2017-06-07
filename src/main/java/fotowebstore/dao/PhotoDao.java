@@ -11,5 +11,7 @@ public interface PhotoDao {
 
     boolean delete(Photo photo);
 
+    Photo find(int id);
+
     List<Photo> findAll();
 }
