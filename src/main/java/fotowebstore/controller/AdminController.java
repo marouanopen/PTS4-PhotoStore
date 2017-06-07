@@ -30,7 +30,7 @@ public class AdminController {
     @RequestMapping("/accept/{id}")
     public ModelAndView accept(@PathVariable("id") int id) {
         User user = userDao.findById(id);
-        userDao.denyRequest(user);
+        userDao.removeRequest(user);
         userDao.acceptRequest(user);
         //user.setPhotographer(true);
         List<User> photographerRequests = userDao.findPhotographerRequests();
@@ -40,7 +40,7 @@ public class AdminController {
     @RequestMapping("/deny/{id}")
     public ModelAndView deny(@PathVariable("id") int id) {
         User user = userDao.findById(id);
-        userDao.denyRequest(user);
+        userDao.removeRequest(user);
         List<User> photographerRequests = userDao.findPhotographerRequests();
         return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }

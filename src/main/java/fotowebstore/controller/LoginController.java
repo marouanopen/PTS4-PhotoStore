@@ -105,4 +105,18 @@ public class LoginController {
 
         return new ModelAndView("WEB-INF/index", "loginStatus", LoginStatus.FAILED);
     }
+
+    @GetMapping("/useroverview")
+    public ModelAndView userOverview(){
+        User user = userDao.findById(8);
+        return new ModelAndView("WEB-INF/useroverview", "user", user);
+    }
+
+    @PostMapping("/useroverview")
+    public ModelAndView requestPhotographer()
+    {
+        User user = userDao.findById(8);
+        userDao.requestPhotographer(user);
+        return new ModelAndView("WEB-INF/useroverview", "user", user);
+    }
 }

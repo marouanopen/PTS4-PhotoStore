@@ -24,5 +24,7 @@ public interface UserDao {
 
     boolean acceptRequest(User user);
 
-    boolean denyRequest(User user);
+    boolean removeRequest(User user);
+
+    boolean requestPhotographer(User user);
 }

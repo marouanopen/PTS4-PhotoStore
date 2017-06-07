@@ -105,10 +105,23 @@ public class UserDaoHibernateImpl implements UserDao {
         }
     }
 
-    public boolean denyRequest(User user){
+    public boolean removeRequest(User user){
 
         try {
             Query query = manager.createNativeQuery("delete from photographer_request where userID = :id", User.class);
+            query.setParameter("id", user.getID());
+            query.executeUpdate();
+            return true;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean requestPhotographer(User user){
+
+        try {
+            Query query = manager.createNativeQuery("insert into photographer_request (userID) values(:id)", User.class);
             query.setParameter("id", user.getID());
             query.executeUpdate();
             return true;
