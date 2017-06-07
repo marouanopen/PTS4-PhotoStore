@@ -46,6 +46,7 @@
 <br>
 <h>Adminoverzicht</h>
 <br><br>
+${sessionScope.}
 <table style="width: 15px;float: left" class="table table-hover">
 <tr>
     <th>Fotografen</th>
@@ -66,6 +67,12 @@
         <p><b>Woonplaats:</b> ${photographer.city}</p>
         <p><b>Emailadres:</b> ${photographer.email}</p>
     </div>
+
+
+    <c:set var="userSession" value="${pageContext.session.getAttribute('user')}"/>
+    <c:if test="${userSession != null}">
+        <p>${userSession.name}</p>
+    </c:if>
 
  <%---   <div id="productInfo" style="display:none">
         <table>

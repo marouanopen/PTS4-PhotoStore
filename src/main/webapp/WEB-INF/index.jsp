@@ -8,8 +8,6 @@
 </head>
 <body>
 
-<%@include file="topbar.jsp"%>
-
 <div id="login-container">
     <form action="${pageContext.request.contextPath}/login" method="post">
         <input type="email" name="email" placeholder="E-mail"/> <br/>

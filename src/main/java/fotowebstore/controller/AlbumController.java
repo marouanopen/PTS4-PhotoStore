@@ -6,6 +6,7 @@ import fotowebstore.dao.UserDao;
 import fotowebstore.entities.Album;
 import fotowebstore.entities.Photo;
 import fotowebstore.entities.User;
+import fotowebstore.util.SerialKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,14 +38,15 @@ public class AlbumController {
 
     @GetMapping("/albumoverview")
     public ModelAndView albumOverview() {
-        List<Album> albums = albumDao.findAll();
+        List<Album> albums = albumDao.findAll();;
+
         return new ModelAndView("WEB-INF/albumoverview", "albums", albums);
     }
 
     @PostMapping("/createalbum")
     public ModelAndView createAlbum(@RequestParam("name") String albumName) {
         User user = userDao.findById(1);
-        Album album = new Album(user, albumName, "test-code");
+        Album album = new Album(user, albumName, SerialKey.generate());
         albumDao.create(album);
 
         return new ModelAndView("WEB-INF/albumcreation", "album", album);
@@ -58,20 +60,24 @@ public class AlbumController {
 
     @PostMapping("/uploadfile")
     public ModelAndView uploadImage(@RequestParam("image") MultipartFile file,
-                                    @RequestParam("albumId") int albumId) {
+                                    @RequestParam("albumId") int albumId,
+                                    @RequestParam("price") double price) {
         //final String sourcePath = new File(new File("").getAbsolutePath()).getPath().concat("\\images\\");
-        final String sourcePath = "C:\\Users\\peter\\Desktop\\Java projects\\FotoWebstore\\src\\main\\webapp\\resources";
+        //final String sourcePath = "C:\\Users\\peter\\Desktop\\Java projects\\FotoWebstore\\src\\main\\webapp\\resources";
+        final String sourcePath = "../webapps/images/";
+
         BufferedOutputStream outputStream = null;
 
-        Photo photo = new Photo(file.getOriginalFilename());
+        Photo photo = new Photo(file.getOriginalFilename(), price);
         Album album = albumDao.find(albumId);
+        photo.setName(photo.getName().replace(' ', '_'));
         photo.setAlbum(album);
         photoDao.create(photo);
 
         try {
             //Get bytes from file and create file on disk with the given path.
             byte[] buffer = file.getBytes();
-            File output = new File(sourcePath + photo.getId() + "_" + file.getOriginalFilename());
+            File output = new File(sourcePath + photo.getId() + "_" + photo.getName());
 
             //Write data to file
             outputStream = new BufferedOutputStream(new FileOutputStream(output));
@@ -79,7 +85,7 @@ public class AlbumController {
 
             //Create pixelated version
             BufferedImage image = pixelateImage(buffer);
-            ImageIO.write(image, "jpg", new File(sourcePath + photo.getId() + "_pixelated_" + file.getOriginalFilename()));
+            ImageIO.write(image, "jpg", new File(sourcePath + photo.getId() + "_pixelated_" + photo.getName()));
 
         } catch (IOException e) {
             e.printStackTrace();

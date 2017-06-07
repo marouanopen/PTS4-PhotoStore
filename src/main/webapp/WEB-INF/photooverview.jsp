@@ -3,11 +3,19 @@
 <html>
 <head>
     <title>Photos in ${album.name}</title>
+    <style>
+        .image {
+            margin: 5% 0 0 5%;
+            width: 90%;
+            height: 90%;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 
 <c:forEach items="${album.photos}" var="photo">
-    <div style="width: 100px; height: 100px; border: 1px solid black; background-image:url(../resources/images/${photo.id}_pixelated_${photo.name});"></div>
+    <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name});"></div>
 </c:forEach>
 </body>
 </html>

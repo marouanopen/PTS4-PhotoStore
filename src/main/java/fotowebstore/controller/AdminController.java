@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,7 +23,6 @@ public class AdminController {
 
     @GetMapping("/requests")
     public ModelAndView requests(){
-
         List<User> photographerRequests = userDao.findPhotographerRequests();
         return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
