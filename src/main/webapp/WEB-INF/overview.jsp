@@ -54,6 +54,7 @@ ${sessionScope.}
     <c:forEach items="${photographers}" var="photographer">
         <tr onclick="clickFunction(${photographers.indexOf(photographer)})">
             <td class="col-md-1">${photographer}</td>
+            <td><a href="<c:url value="${pageContext.request.contextPath}/remove/${user.ID}"/>"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
         </tr>
     </c:forEach>
 </table>

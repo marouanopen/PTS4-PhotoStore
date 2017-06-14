@@ -41,8 +41,18 @@ public class AdminController {
     public ModelAndView deny(@PathVariable("id") int id) {
         User user = userDao.findById(id);
         userDao.removeRequest(user);
+
         List<User> photographerRequests = userDao.findPhotographerRequests();
         return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
+    }
+
+    @RequestMapping("/remove/{id}")
+    public ModelAndView remove(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
+        userDao.remove(user);
+
+        List<User> photographers = userDao.findAll();
+        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
     }
 
     @RequestMapping("/overview")
