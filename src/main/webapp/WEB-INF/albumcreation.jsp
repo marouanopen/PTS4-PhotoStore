@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Create album</title>
+    <%@include file="/WEB-INF/loggedOutRedirect.jsp"%>
 </head>
 <body>
 <p>${album.name}</p>

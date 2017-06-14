@@ -11,6 +11,7 @@
             background-size: cover;
         }
     </style>
+    <%@include file="/WEB-INF/loggedOutRedirect.jsp"%>
 </head>
 <body>
 

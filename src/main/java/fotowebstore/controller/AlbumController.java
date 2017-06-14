@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
@@ -29,16 +30,19 @@ public class AlbumController {
     private PhotoDao photoDao;
     private UserDao userDao;
 
+    private HttpSession session;
+
     @Autowired
-    public AlbumController(AlbumDao albumDao, PhotoDao photoDao, UserDao userDao) {
+    public AlbumController(AlbumDao albumDao, PhotoDao photoDao, UserDao userDao, HttpSession session) {
         this.albumDao = albumDao;
         this.photoDao = photoDao;
         this.userDao = userDao;
+        this.session = session;
     }
 
     @GetMapping("/albumoverview")
     public ModelAndView albumOverview() {
-        List<Album> albums = albumDao.findAll();;
+        List<Album> albums = albumDao.findAll();
 
         return new ModelAndView("WEB-INF/albumoverview", "albums", albums);
     }

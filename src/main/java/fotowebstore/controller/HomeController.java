@@ -1,17 +1,23 @@
 package fotowebstore.controller;
 
-import fotowebstore.util.EmailHandler;
-import fotowebstore.util.PasswordHandler;
-import fotowebstore.util.SerialKey;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Controller
 public class HomeController {
+
+    private HttpSession session;
+
+    @Autowired
+    public HomeController(HttpSession session) {
+        this.session = session;
+    }
+
 
     @RequestMapping("/")
     public String home() {
@@ -21,16 +27,8 @@ public class HomeController {
     @RequestMapping("/test")
     public ModelAndView test() {
         ArrayList<String> jemoeder = new ArrayList<String>();
-        jemoeder.add(SerialKey.generate());
-        jemoeder.add(SerialKey.generate());
-        jemoeder.add(SerialKey.generate());
-        jemoeder.add(UUID.randomUUID().toString());
-        jemoeder.add(new String(PasswordHandler.salt()));
-        jemoeder.add(new String(PasswordHandler.salt()));
-        jemoeder.add(new String(PasswordHandler.salt()));
-        jemoeder.add(new String(PasswordHandler.salt()));
-        EmailHandler emailHandler = new EmailHandler();
-        //emailHandler.send("", "Code for album", SerialKey.generate());
+        String test = (String) session.getAttribute("Test");
+        jemoeder.add(test);
         return new ModelAndView("WEB-INF/test", "jemoeder", jemoeder);
     }
 }

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Album overview</title>
+    <%@include file="/WEB-INF/loggedOutRedirect.jsp"%>
 </head>
 <body>
 <c:forEach items="${albums}" var="album">

@@ -38,6 +38,9 @@
     <c:when test="${loginStatus == 'DUPLICATE_EMAIL'}">
         <p style="color: red;">The email that you entered is already in use!</p>
     </c:when>
+    <c:when test="${loginStatus == 'SUCCESS'}">
+        <p style="color: lawngreen;">Account creation successful!</p>
+    </c:when>
 </c:choose>
 
 </body>

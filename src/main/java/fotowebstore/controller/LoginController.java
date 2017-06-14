@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -20,12 +19,13 @@ import java.security.NoSuchAlgorithmException;
 @Controller
 public class LoginController {
 
-    private final UserDao userDao;
+    private UserDao userDao;
+    private HttpSession session;
 
     @Autowired
-    public LoginController(UserDao userDao) {
-
+    public LoginController(UserDao userDao, HttpSession session) {
         this.userDao = userDao;
+        this.session = session;
     }
 
     @GetMapping("/login")
@@ -34,8 +34,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ModelAndView loginSubmit(HttpServletRequest request,
-                                    @RequestBody MultiValueMap<String, String> form) {
+    public ModelAndView loginSubmit(@RequestBody MultiValueMap<String, String> form) {
 
         String email = form.getFirst("email");
         String password = form.getFirst("password");
@@ -50,10 +49,8 @@ public class LoginController {
                 String saltedPassword = salt + password;
                 String hashedPassword = new String(PasswordHandler.hash(saltedPassword.getBytes("UTF-8")));
 
-                HttpSession session = request.getSession();
-                session.setMaxInactiveInterval(600);
-
                 if (hashedPassword.equals(user.getPassword())) {
+                    session.setMaxInactiveInterval(1800);
                     session.setAttribute("userData", user);
                     return new ModelAndView("WEB-INF/overview", "user", user);
                 }
@@ -74,8 +71,7 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerSubmit(HttpSession session,
-                                       @RequestBody MultiValueMap<String, String> form) {
+    public ModelAndView registerSubmit(@RequestBody MultiValueMap<String, String> form) {
 
         try {
             String name = form.getFirst("name");
@@ -93,7 +89,7 @@ public class LoginController {
             User user = new User(name, street, houseNumber, zipCode, city, email, hashedPassword, salt);
             userDao.create(user);
 
-            return new ModelAndView("WEB-INF/overview", "user", user);
+            return new ModelAndView("WEB-INF/index", "loginStatus", LoginStatus.SUCCESS);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
