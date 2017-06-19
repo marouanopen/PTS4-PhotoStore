@@ -9,3 +9,15 @@ T
 $src\main\webapp\WEB-INF\overview.jsp,1\d\1dec3a3b6c5b1dce24c26cd499b9d6c3776f1d0a
 T
 $src\main\webapp\WEB-INF\requests.jsp,5\b\5b0e16d894ebbe95e9ec19cd1add00f1847169f0
+Q
+!src\main\webapp\WEB-INF\login.jsp,1\4\148bcb4b3e28ffb5c5c357d32c9a14df2d15a836
+T
+$src\main\webapp\WEB-INF\register.jsp,6\b\6bf694e6078e6b45c2dc1bd15e8749c2f4dbde0f
+O
+src\main\webapp\WEB-INF\main.js,0\e\0e805e05cb49d81e9a40eaa7537ff7a5979f621f
+T
+$src\main\webapp\WEB-INF\edituser.jsp,a\2\a262d49e8d9714509973e19bc56569a534871ab6
+Q
+!src\main\webapp\WEB-INF\index.jsp,1\3\13c8027a08b80c012a7d1277f51ad34e194ee98c
+j
+:src\main\java\fotowebstore\controller\LoginController.java,e\4\e419273141901753b6805456c1c7b3d07ae6dafc

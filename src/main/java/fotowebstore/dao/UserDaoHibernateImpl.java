@@ -42,7 +42,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     public boolean remove(User user) {
         try {
-            manager.remove(user);
+            manager.remove(findById(user.getID()));
             return true;
         } catch (Exception ex) { //Don't know what exception will be thrown here.
             ex.printStackTrace();

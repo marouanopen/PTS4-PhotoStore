@@ -47,7 +47,6 @@
 <br>
 <h>Adminoverzicht</h>
 <br><br>
-${sessionScope.}
 <table style="width: 15px;float: left" class="table table-hover">
 <tr>
     <th>Fotografen</th>
@@ -55,7 +54,8 @@ ${sessionScope.}
     <c:forEach items="${photographers}" var="photographer">
         <tr onclick="clickFunction(${photographers.indexOf(photographer)})">
             <td class="col-md-1">${photographer}</td>
-            <td><a href="<c:url value="${pageContext.request.contextPath}/remove/${user.ID}"/>"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+            <td><a href="<c:url value="${pageContext.request.contextPath}/edit/${photographer.ID}"/>"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td><a href="<c:url value="${pageContext.request.contextPath}/remove/${photographer.ID}"/>"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
         </tr>
     </c:forEach>
 </table>

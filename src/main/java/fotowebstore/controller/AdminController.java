@@ -4,11 +4,11 @@ import fotowebstore.dao.UserDao;
 import fotowebstore.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -46,6 +46,13 @@ public class AdminController {
         return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
     }
 
+    @RequestMapping("/overview")
+    public ModelAndView overview(){
+
+        List<User> photographers = userDao.findAll();
+        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+    }
+
     @RequestMapping("/remove/{id}")
     public ModelAndView remove(@PathVariable("id") int id) {
         User user = userDao.findById(id);
@@ -55,10 +62,35 @@ public class AdminController {
         return new ModelAndView("WEB-INF/overview", "photographers", photographers);
     }
 
-    @RequestMapping("/overview")
-    public ModelAndView overview(){
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
 
-        List<User> photographers = userDao.findAll();
-        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+        return new ModelAndView("WEB-INF/edituser", "user", user);
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView edituser(HttpSession session,
+                                 @RequestBody MultiValueMap<String, String> form) {
+
+        try {
+            User user = userDao.findById(Integer.valueOf(form.getFirst("id")));
+            user.setName(form.getFirst("name"));
+            user.setEmail(form.getFirst("email"));
+            user.setStreet(form.getFirst("street"));
+            user.setHouseNumber(form.getFirst("housenumber"));
+            user.setZipCode(form.getFirst("zipcode"));
+            user.setCity(form.getFirst("city"));
+
+            userDao.update(user);
+
+            List<User> photographers = userDao.findAll();
+            return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+        } catch (Exception ex){
+            ex.printStackTrace();
+
+            List<User> photographers = userDao.findAll();
+            return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+        }
     }
 }

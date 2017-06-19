@@ -1,21 +1,21 @@
 
+?squid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ
+?squid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ
+?squid:S1166"%Either log or rethrow this exception.(ËØéÁüÿÿÿÿ
+8squid:S1148"#Use a logger to log this exception.(Ç’Çê
+8squid:S1148"#Use a logger to log this exception.(Ç’Çê
+:squid:S1166"%Either log or rethrow this exception.(ÐÑ—Þ
 esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(™â”óùÿÿÿÿ
-T
-squid:S106";Replace this usage of System.out or System.err by a logger.(·Ÿ˜™þÿÿÿÿ
+?squid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ
+8squid:S1148"#Use a logger to log this exception.(Ç’Çê
 T
 squid:S106";Replace this usage of System.out or System.err by a logger.(ê¢­õúÿÿÿÿ
 ?squid:S1166"%Either log or rethrow this exception.(ËØéÁüÿÿÿÿ
-?squid:S1166"%Either log or rethrow this exception.(ËØéÁüÿÿÿÿ
 :squid:S1166"%Either log or rethrow this exception.(‘ÐÓô
 :squid:S1166"%Either log or rethrow this exception.(ÐÑ—Þ
-:squid:S1166"%Either log or rethrow this exception.(ÐÑ—Þ
-?squid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ
-?squid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ
-?squid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ
 qsquid:S00117"VRename this local variable name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áôð¨ÿÿÿÿÿ
 8squid:S1148"#Use a logger to log this exception.(Ç’Çê
 8squid:S1148"#Use a logger to log this exception.(Ç’Çê
-8squid:S1148"#Use a logger to log this exception.(Ç’Çê
-8squid:S1148"#Use a logger to log this exception.(Ç’Çê
-8squid:S1148"#Use a logger to log this exception.(Ç’Çê
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(·Ÿ˜™þÿÿÿÿ
 8squid:S1148"#Use a logger to log this exception.(Ç’Çê
