@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Album {
+public class Album extends Product{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,13 @@ public class Album {
     private String voucherCode;
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
     private Set<Photo> photos;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_album",
+            joinColumns = @JoinColumn(name = "album_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> users;
 
     public Album() {
     }
@@ -76,5 +83,21 @@ public class Album {
 
     public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    @Override
+    public int hashCode() {
+        return getID() +
+                user.hashCode() +
+                name.hashCode() +
+                voucherCode.hashCode();
     }
 }

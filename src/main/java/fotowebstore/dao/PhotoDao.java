@@ -14,4 +14,6 @@ public interface PhotoDao {
     Photo find(int id);
 
     List<Photo> findAll();
+
+    void save();
 }

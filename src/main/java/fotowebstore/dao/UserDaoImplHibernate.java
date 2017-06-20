@@ -2,23 +2,13 @@ package fotowebstore.dao;
 
 import fotowebstore.entities.User;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-
-@Repository
-@Transactional
-public class UserDaoHibernateImpl implements UserDao {
-
-    @PersistenceContext
-    private EntityManager manager;
+public class UserDaoImplHibernate extends BaseDao implements UserDao {
 
     public boolean create(User user) {
         try {

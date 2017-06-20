@@ -6,19 +6,17 @@ import java.util.Properties;
 
 public class EmailHandler {
 
-    private Properties props;
-
-    public EmailHandler() {
-        props = System.getProperties();
-        props.put("mail.smtp.starttls.enable", true);
+    private static Properties props = System.getProperties();
+    static {
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.user", "PTS4FotoWebStore");
         props.put("mail.smtp.password", "PTS4FotoWebStore!");
         props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", true);
+        props.put("mail.smtp.auth", "true");
     }
 
-    public void send(String to, String subject, String content) {
+    public static void send(String to, String subject, String content) {
         Session session = Session.getInstance(props, null);
         MimeMessage message = new MimeMessage(session);
 
@@ -31,18 +29,8 @@ public class EmailHandler {
             message.setFrom(from);
             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 
-            // Create a multi-part to combine the parts
-            Multipart multipart = new MimeMultipart("alternative");
-
-            // Create the html part
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setContent(content, "text/html");
-
-            // Add html part to multi part
-            multipart.addBodyPart(messageBodyPart);
-
-            // Associate multi-part with message
-            message.setContent(multipart);
+            // Create the content
+            message.setText(content);
 
             // Send message
             Transport transport = session.getTransport("smtp");

@@ -3,7 +3,7 @@ package fotowebstore.entities;
 import javax.persistence.*;
 
 @Entity
-public class Photo {
+public class Photo extends Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,5 +67,13 @@ public class Photo {
         album.getPhotos().remove(this);
         this.album = album;
         album.getPhotos().add(this);
+    }
+
+    @Override
+    public int hashCode() {
+        return id +
+                name.hashCode() +
+                (int) price +
+                album.hashCode();
     }
 }

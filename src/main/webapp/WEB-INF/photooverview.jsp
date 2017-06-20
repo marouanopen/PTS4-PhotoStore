@@ -15,6 +15,12 @@
 </head>
 <body>
 
+<form action="${pageContext.request.contextPath}/email/voucher" method="post">
+    <input type="email" name="email" placeholder="E-mail"/>
+    <input type="hidden" name="voucherCode" value="${album.voucherCode}"/>
+    <input type="submit" value="Send Email"/>
+</form>
+
 <c:forEach items="${album.photos}" var="photo">
     <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name});"></div>
 </c:forEach>

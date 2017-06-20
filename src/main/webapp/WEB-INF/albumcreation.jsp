@@ -9,7 +9,7 @@
 <p>${album.name}</p>
 
 <c:forEach items="${album.photos}" var="photo">
-    <div style="width: 192px; height: 108px; background-size: cover; background-image: url(images/${photo.id}_pixelated_${photo.name});"></div>
+    <div style="width: 192px; height: 108px; background-size: cover; background-image: url(images/${photo.id}_${photo.name});"></div>
 </c:forEach>
 
 <form method="post" action="${pageContext.request.contextPath}/uploadfile" enctype="multipart/form-data">

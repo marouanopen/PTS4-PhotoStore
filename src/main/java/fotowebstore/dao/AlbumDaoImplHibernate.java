@@ -1,22 +1,15 @@
 package fotowebstore.dao;
 
 import fotowebstore.entities.Album;
+import fotowebstore.entities.User;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-@Repository
-@Transactional
-public class AlbumDaoHibernateImpl implements AlbumDao {
 
-    @PersistenceContext
-    private EntityManager manager;
+public class AlbumDaoImplHibernate extends BaseDao implements AlbumDao {
 
     public Album create(Album Album) {
         try {
@@ -52,6 +45,20 @@ public class AlbumDaoHibernateImpl implements AlbumDao {
         Query query = manager.createQuery("select a from Album as a where a.ID = :id");
         query.setParameter("id", id);
         return (Album) query.getSingleResult();
+    }
+
+    public Album findByVoucherCode(String voucherCode) {
+        Query query = manager.createQuery("select a from Album as a where a.voucherCode = :voucherCode");
+        query.setParameter("voucherCode", voucherCode);
+        return (Album) query.getSingleResult();
+    }
+
+    public void linkUserAndAlbum(User user, Album album) {
+        Query query =
+                manager.createNativeQuery("INSERT INTO `user_album`(`user_id`, `album_id`) VALUES (:userid,:albumid)");
+        query.setParameter("userid", user.getID());
+        query.setParameter("albumid", album.getID());
+        query.executeUpdate();
     }
 
     public List<Album> findAll() {

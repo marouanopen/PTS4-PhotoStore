@@ -26,7 +26,7 @@ public class PersistenceConfig {
 
     @Bean
     public UserDao userDao() {
-        return new UserDaoHibernateImpl();
+        return new UserDaoImplHibernate();
     }
 
     @Bean
@@ -36,12 +36,12 @@ public class PersistenceConfig {
 
     @Bean
     public AlbumDao albumDao() {
-        return new AlbumDaoHibernateImpl();
+        return new AlbumDaoImplHibernate();
     }
 
     @Bean
     public PhotoDao photoDao() {
-        return new PhotoDaoHibernateImpl();
+        return new PhotoDaoImplHibernate();
     }
 
     @Bean

@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 import java.io.*;
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AlbumController {
@@ -42,14 +42,15 @@ public class AlbumController {
 
     @GetMapping("/albumoverview")
     public ModelAndView albumOverview() {
-        List<Album> albums = albumDao.findAll();
+        User user = (User) session.getAttribute("userData");
+        Set<Album> albums = user.getAlbums();
 
         return new ModelAndView("WEB-INF/albumoverview", "albums", albums);
     }
 
     @PostMapping("/createalbum")
     public ModelAndView createAlbum(@RequestParam("name") String albumName) {
-        User user = userDao.findById(1);
+        User user = (User) session.getAttribute("userData");
         Album album = new Album(user, albumName, SerialKey.generate());
         albumDao.create(album);
 

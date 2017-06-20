@@ -1,10 +1,8 @@
 package fotowebstore.entities;
 
-import fotowebstore.dao.UserDao;
-import fotowebstore.dao.UserDaoHibernateImpl;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @NamedQueries({
@@ -28,8 +26,15 @@ public class User implements Serializable {
     private boolean blocked;
     private boolean admin;
     private String salt;
-    //private ArrayList<Product> products = new ArrayList<Product>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_album",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "album_id")
+    )
+    private Set<Album> albums;
     private boolean requesting;
+
 
     public User() {
     }
@@ -99,20 +104,20 @@ public class User implements Serializable {
 //    }
 
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public boolean isRequesting() {
         return requesting;
     }
 
     public void setRequesting(boolean requesting) {
         this.requesting = requesting;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public int getID() {
@@ -167,9 +172,43 @@ public class User implements Serializable {
 //        products.add(product);
 //    }
 
+
+    public boolean isPhotographer() {
+        return photographer;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
+    }
+
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return getID() +
+                name.hashCode() +
+                street.hashCode() +
+                city.hashCode() +
+                houseNumber.hashCode() +
+                zipCode.hashCode() +
+                email.hashCode() +
+                password.hashCode() +
+                salt.hashCode();
     }
 }
 
