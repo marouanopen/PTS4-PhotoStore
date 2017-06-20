@@ -21,10 +21,4 @@ public interface UserDao {
     List<User> findAll();
 
     List<User> findPhotographerRequests();
-
-    boolean acceptRequest(User user);
-
-    boolean removeRequest(User user);
-
-    boolean requestPhotographer(User user);
 }

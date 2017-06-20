@@ -34,7 +34,7 @@
     <b>City:</b> ${user.city}
 </label><br>
 
-<c:if test="${user.photographer == false}">
+<c:if test="${!user.photographer && !user.requesting}">
 <form method="post" action="${pageContext.request.contextPath}/useroverview">
     <input type="submit" value="Request photographer">
 </c:if>

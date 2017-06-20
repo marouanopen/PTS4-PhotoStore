@@ -1,5 +1,8 @@
 package fotowebstore.entities;
 
+import fotowebstore.dao.UserDao;
+import fotowebstore.dao.UserDaoHibernateImpl;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -26,7 +29,7 @@ public class User implements Serializable {
     private boolean admin;
     private String salt;
     //private ArrayList<Product> products = new ArrayList<Product>();
-
+    private boolean requesting;
 
     public User() {
     }
@@ -102,6 +105,14 @@ public class User implements Serializable {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public boolean isRequesting() {
+        return requesting;
+    }
+
+    public void setRequesting(boolean requesting) {
+        this.requesting = requesting;
     }
 
     public int getID() {

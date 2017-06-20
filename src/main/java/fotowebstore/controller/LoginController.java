@@ -112,7 +112,8 @@ public class LoginController {
     public ModelAndView requestPhotographer()
     {
         User user = userDao.findById(8);
-        userDao.requestPhotographer(user);
+        user.setRequesting(true);
+        userDao.update(user);
         return new ModelAndView("WEB-INF/useroverview", "user", user);
     }
 }

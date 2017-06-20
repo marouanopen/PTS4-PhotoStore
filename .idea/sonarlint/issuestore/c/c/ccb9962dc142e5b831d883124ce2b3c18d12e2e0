@@ -1,8 +1,0 @@
-
-fsquid:S1192"QDefine a constant instead of duplicating this literal "WEB-INF/requests" 3 times.(Á°Ñž
-msquid:S1192"QDefine a constant instead of duplicating this literal "WEB-INF/overview" 4 times.(ã–Çí8†µÍ®Ê+
-?squid:S1148"#Use a logger to log this exception.(Ç’Çê8úÒ‹¯Ê+
-Fsquid:S1166"%Either log or rethrow this exception.(±Ÿ—±ÿÿÿÿÿ8Ö„‹¯Ê+
-[squid:S1192"FDefine a constant instead of duplicating this literal "users" 3 times.(Á°Ñž
-jsquid:S1192"NDefine a constant instead of duplicating this literal "photographers" 4 times.(ã–Çí8†µÍ®Ê+
-esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¢Š«ƒøÿÿÿÿ
