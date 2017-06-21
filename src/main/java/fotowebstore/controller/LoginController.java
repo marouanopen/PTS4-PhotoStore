@@ -52,7 +52,7 @@ public class LoginController {
                 if (hashedPassword.equals(user.getPassword())) {
                     session.setMaxInactiveInterval(1800);
                     session.setAttribute("userData", user);
-                    return new ModelAndView("WEB-INF/overview", "user", user);
+                    return new ModelAndView("WEB-INF/main", "user", user);
                 }
 
             } catch (NoSuchAlgorithmException e) {
@@ -103,15 +103,16 @@ public class LoginController {
     }
 
     @GetMapping("/useroverview")
-    public ModelAndView userOverview(){
-        User user = userDao.findById(8);
+    public ModelAndView userOverview(HttpSession session){
+
+        User user = (User) session.getAttribute("userData");
         return new ModelAndView("WEB-INF/useroverview", "user", user);
     }
 
     @PostMapping("/useroverview")
-    public ModelAndView requestPhotographer()
+    public ModelAndView requestPhotographer(HttpSession session)
     {
-        User user = userDao.findById(8);
+        User user = (User) session.getAttribute("userData");
         user.setRequesting(true);
         userDao.update(user);
         return new ModelAndView("WEB-INF/useroverview", "user", user);

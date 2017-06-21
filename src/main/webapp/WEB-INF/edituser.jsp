@@ -38,13 +38,13 @@
 
 <div id="edit-container">
     <form action="${pageContext.request.contextPath}/edit" method="post"> <br/>
-        <input type="text" name="id" value="${user.ID}"/> <br/>
-        <input type="text" name="name" value="${user.name}"/> <br/>
-        <input type="email" name="email" value="${user.email}"/> <br/>
-        <input type="text" name="street" value="${user.street}"/> <br/>
-        <input type="text" name="housenumber" value="${user.houseNumber}"/> <br/>
-        <input type="text" name="zipcode" value="${user.zipCode}"/> <br/>
-        <input type="text" name="city" value="${user.city}"/> <br/>
+        <label>ID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><input type="text" name="id" value="${user.ID}"/> <br/>
+        <label>Name &nbsp; &nbsp; &nbsp;</label><input type="text" name="name" value="${user.name}"/> <br/>
+        <label>Email &nbsp; &nbsp; &nbsp;</label><input type="email" name="email" value="${user.email}"/> <br/>
+        <label>Street &nbsp; &nbsp; &nbsp; &nbsp;</label><input type="text" name="street" value="${user.street}"/> <br/>
+        <label>Number &nbsp; &nbsp;</label><input type="text" name="housenumber" value="${user.houseNumber}"/> <br/>
+        <label>ZipCode &nbsp;</label><input type="text" name="zipcode" value="${user.zipCode}"/> <br/>
+        <label>City &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><input type="text" name="city" value="${user.city}"/> <br/>
         <input type="submit" value="Submit">
     </form>
 </div>

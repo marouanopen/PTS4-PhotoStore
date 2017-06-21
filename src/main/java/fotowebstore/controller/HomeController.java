@@ -1,8 +1,10 @@
 package fotowebstore.controller;
 
+import fotowebstore.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,5 +22,13 @@ public class HomeController {
     @RequestMapping("/")
     public String home() {
         return "WEB-INF/index";
+    }
+
+    @RequestMapping("/main")
+    public ModelAndView main(HttpSession session){
+
+        User user = (User) session.getAttribute("userData");
+
+        return new ModelAndView("WEB-INF/main", "user", user);
     }
 }
