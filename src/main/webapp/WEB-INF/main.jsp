@@ -17,11 +17,11 @@
 <body>
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="/useroverview">Profile</a></li>
     <li role="presentation"><a href="#">Photos</a></li>
+    <li role="presentation"><a href="/useroverview">Profile</a></li>
 </ul>
 
-<p>Welkom ${user.name} !</p>
+<p>Welcome ${user.name} !</p>
 
 </body>
 </html>

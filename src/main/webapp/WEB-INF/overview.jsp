@@ -25,7 +25,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
-    <title>Admin</title>
+    <title>Admin overview</title>
     <script>
         function clickFunction(userid){
 
@@ -44,12 +44,13 @@
     </script>
 </head>
 <body>
-<br>
-<h>Adminoverzicht</h>
-<br><br>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Photographers</a></li>
+    <li role="presentation"><a href="/useroverview">Albums</a></li>
+</ul>
 <table style="width: 15px;float: left" class="table table-hover">
 <tr>
-    <th>Fotografen</th>
+    <th>Photographers</th>
 </tr>
     <c:forEach items="${photographers}" var="photographer">
         <tr onclick="clickFunction(${photographers.indexOf(photographer)})">

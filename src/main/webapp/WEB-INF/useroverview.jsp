@@ -18,8 +18,8 @@
 <body>
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="/main">Home</a></li>
-    <li role="presentation" class="active"><a href="#">Profile</a></li>
     <li role="presentation"><a href="#">Photos</a></li>
+    <li role="presentation" class="active"><a href="#">Profile</a></li>
 </ul>
 
 <h>User details</h>
