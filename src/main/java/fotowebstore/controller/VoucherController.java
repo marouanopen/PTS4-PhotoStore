@@ -43,16 +43,29 @@ public class VoucherController {
     }
 
     @GetMapping("/voucher/{vouchercode}")
-    public String useVoucherCode(@PathVariable("vouchercode") String voucherCode) {
+    public String voucherFromLink(@PathVariable("vouchercode") String voucherCode) {
+        useVoucherCode(voucherCode);
+
+        return "WEB-INF/albumoverview";
+    }
+
+    @PostMapping("/voucher")
+    public String voucherFromPOST(@RequestParam("vouchercode") String voucherCode) {
+        useVoucherCode(voucherCode);
+
+        return "WEB-INF/albumoverview";
+    }
+
+    private boolean useVoucherCode(String voucherCode) {
         User user = (User) session.getAttribute("userData");
         Album album = albumDao.findByVoucherCode(voucherCode);
 
-        if (user == null) return "WEB-INF/index";
-        if (album == null) return "WEB-INF/index";
-        if (album.isHidden()) return "WEB-INF/index";
+        if (user == null) return false;
+        if (album == null) return false;
+        if (album.isHidden()) return false;
 
         albumDao.linkUserAndAlbum(user, album);
 
-        return "WEB-INF/overview";
+        return true;
     }
 }

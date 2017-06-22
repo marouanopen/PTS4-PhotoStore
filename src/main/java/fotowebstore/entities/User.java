@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+
 @Entity
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", query = "select u from User as u where u.email = :email"),
@@ -99,11 +100,6 @@ public class User implements Serializable {
         this.admin = admin;
     }
 
-//    public void setProducts(ArrayList<Product> products) {
-//        this.products = products;
-//    }
-
-
     public boolean isRequesting() {
         return requesting;
     }
@@ -163,15 +159,6 @@ public class User implements Serializable {
     public boolean getAdmin() {
         return admin;
     }
-
-//    public ArrayList<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void addProduct(Product product) {
-//        products.add(product);
-//    }
-
 
     public boolean isPhotographer() {
         return photographer;

@@ -26,9 +26,13 @@ public class HomeController {
 
     @RequestMapping("/main")
     public ModelAndView main(HttpSession session){
-
         User user = (User) session.getAttribute("userData");
 
         return new ModelAndView("WEB-INF/main", "user", user);
+    }
+
+    @RequestMapping("/shoppingCart")
+    public String shoppingCart() {
+        return "WEB-INF/shoppingCart";
     }
 }

@@ -1,21 +1,22 @@
 package fotowebstore.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Album extends Product{
+public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    protected int id;
     @ManyToOne
     private User user;
     private String name;
     private boolean hidden;
     private String voucherCode;
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
-    private Set<Photo> photos;
+    private List<Photo> photos;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_album",
@@ -37,20 +38,44 @@ public class Album extends Product{
         this.voucherCode = voucherCode;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getVoucherCode() {
+        return voucherCode;
+    }
+
+    public void setVoucherCode(String voucherCode) {
+        this.voucherCode = voucherCode;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -69,33 +94,9 @@ public class Album extends Product{
         this.hidden = hidden;
     }
 
-    public String getVoucherCode() {
-        return voucherCode;
-    }
-
-    public void setVoucherCode(String voucherCode) {
-        this.voucherCode = voucherCode;
-    }
-
-    public Set<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<Photo> photos) {
-        this.photos = photos;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
     @Override
     public int hashCode() {
-        return getID() +
+        return getId() +
                 user.hashCode() +
                 name.hashCode() +
                 voucherCode.hashCode();

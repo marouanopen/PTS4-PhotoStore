@@ -22,7 +22,12 @@
 </form>
 
 <c:forEach items="${album.photos}" var="photo">
-    <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name});"></div>
+    <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name})"></div>
+    <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post">
+        <input type="hidden" name="productId" value="${photo.id}"/>
+        <input type="hidden" name="type" value="photo"/>
+        <input type="submit" value="Add to shopping cart"/>
+    </form>
 </c:forEach>
 </body>
 </html>

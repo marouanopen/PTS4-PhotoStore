@@ -3,14 +3,15 @@ package fotowebstore.entities;
 import javax.persistence.*;
 
 @Entity
-public class Photo extends Product {
+public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
+    protected int id;
+    protected String name;
+    protected boolean hidden;
     private double price;
-    private boolean hidden;
+
     @ManyToOne
     @JoinColumn(name = "AlbumID")
     private Album album;
@@ -27,36 +28,12 @@ public class Photo extends Product {
         this.price = price;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public boolean isHidden() {
-        return hidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Album getAlbum() {
@@ -67,6 +44,30 @@ public class Photo extends Product {
         album.getPhotos().remove(this);
         this.album = album;
         album.getPhotos().add(this);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
     @Override

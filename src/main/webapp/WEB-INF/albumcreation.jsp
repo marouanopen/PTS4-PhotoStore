@@ -13,7 +13,7 @@
 </c:forEach>
 
 <form method="post" action="${pageContext.request.contextPath}/uploadfile" enctype="multipart/form-data">
-    <input type="hidden" name="albumId" value="${album.ID}"/>
+    <input type="hidden" name="albumId" value="${album.id}"/>
     <input type="file" name="image" accept=".jpg"><br/>
     <label>
         Price: <input type="number" name="price" step="0.01" value="0.00"/>

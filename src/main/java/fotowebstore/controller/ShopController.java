@@ -2,7 +2,6 @@ package fotowebstore.controller;
 
 import fotowebstore.dao.AlbumDao;
 import fotowebstore.dao.PhotoDao;
-import fotowebstore.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ShopController {
@@ -27,9 +26,9 @@ public class ShopController {
         this.photoDao = photoDao;
     }
 
-    @PostMapping("addToShoppingCart")
+    @PostMapping("/addToShoppingCart")
     public ModelAndView addToShoppingCart(@RequestParam("productId") int productId, @RequestParam("type") String type) {
-        Product product = null;
+        Object product = null;
 
         if (type.equals("photo"))
             product = photoDao.find(productId);
@@ -37,11 +36,10 @@ public class ShopController {
             product = albumDao.find(productId);
 
         if (session.getAttribute("shoppingCart") != null) {
-            Set<Product> products = (Set<Product>) session.getAttribute("shoppingCart");
+            List<Object> products = (List<Object>) session.getAttribute("shoppingCart");
             products.add(product);
-            session.setAttribute("shoppingCart", products);
         } else {
-            Set<Product> products = new HashSet<Product>();
+            List<Object> products = new ArrayList<Object>();
             products.add(product);
             session.setAttribute("shoppingCart", products);
         }

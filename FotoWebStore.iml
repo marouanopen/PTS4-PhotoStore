@@ -20,7 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="FotoWebStorePU" value="364842c7-a93a-4d74-8d84-efc63545359d" />
+          <factory-entry name="FotoWebStorePU" value="5831f6b8-2148-419f-a757-9a50505e72f2" />
           <factory-entry name="entityManagerFactory" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />

@@ -42,7 +42,7 @@ public class AlbumDaoImplHibernate extends BaseDao implements AlbumDao {
     }
 
     public Album find(int id) {
-        Query query = manager.createQuery("select a from Album as a where a.ID = :id");
+        Query query = manager.createQuery("select a from Album as a where a.id = :id");
         query.setParameter("id", id);
         return (Album) query.getSingleResult();
     }
@@ -57,7 +57,7 @@ public class AlbumDaoImplHibernate extends BaseDao implements AlbumDao {
         Query query =
                 manager.createNativeQuery("INSERT INTO `user_album`(`user_id`, `album_id`) VALUES (:userid,:albumid)");
         query.setParameter("userid", user.getID());
-        query.setParameter("albumid", album.getID());
+        query.setParameter("albumid", album.getId());
         query.executeUpdate();
     }
 

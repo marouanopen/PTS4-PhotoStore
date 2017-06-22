@@ -30,11 +30,6 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public AccountDaoImpl accountDao() {
-        return new AccountDaoImpl();
-    }
-
-    @Bean
     public AlbumDao albumDao() {
         return new AlbumDaoImplHibernate();
     }
