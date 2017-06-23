@@ -1,6 +1,11 @@
 package fotowebstore.controller;
 
+import fotowebstore.dao.AlbumDao;
+import fotowebstore.dao.PhotoDao;
+import fotowebstore.dao.PhotoDaoImplHibernate;
 import fotowebstore.dao.UserDao;
+import fotowebstore.entities.Album;
+import fotowebstore.entities.Photo;
 import fotowebstore.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,16 +14,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @Controller
 public class AdminController {
 
     private final UserDao userDao;
+    private final PhotoDao photoDao;
+    private final AlbumDao albumDao;
 
     @Autowired
-    public AdminController(UserDao userDao){
+    public AdminController(UserDao userDao, PhotoDao photoDao, AlbumDao albumDao){
         this.userDao = userDao;
+        this.photoDao = photoDao;
+        this.albumDao = albumDao;
     }
 
     @GetMapping("/requests")
@@ -93,5 +103,59 @@ public class AdminController {
             List<User> photographers = userDao.findAll();
             return new ModelAndView("WEB-INF/overview", "photographers", photographers);
         }
+    }
+
+    @RequestMapping("/photooverviewadmin")
+    public ModelAndView photooverviewadmin(){
+
+        List<Photo> photos = photoDao.findAll();
+        return new ModelAndView("WEB-INF/photooverviewadmin", "photos", photos);
+    }
+
+    @GetMapping("/hide/{id}")
+    public ModelAndView hide(@PathVariable("id") int id){
+        Photo photo = photoDao.find(id);
+        photo.setHidden(true);
+        photoDao.update(photo);
+
+        List<Photo> photos = photoDao.findAll();
+        return new ModelAndView("WEB-INF/photooverviewadmin", "photos", photos);
+    }
+
+    @GetMapping("/show/{id}")
+    public ModelAndView show(@PathVariable("id") int id){
+        Photo photo = photoDao.find(id);
+        photo.setHidden(false);
+        photoDao.update(photo);
+
+        List<Photo> photos = photoDao.findAll();
+        return new ModelAndView("WEB-INF/photooverviewadmin", "photos", photos);
+    }
+
+    @RequestMapping("/albumoverviewadmin")
+    public ModelAndView albumoverviewadmin(){
+
+        List<Album> albums = albumDao.findAll();
+        return new ModelAndView("WEB-INF/albumoverviewadmin", "albums", albums);
+    }
+
+    @GetMapping("/hidealbum/{id}")
+    public ModelAndView hidealbum(@PathVariable("id") int id){
+        Album album = albumDao.find(id);
+        album.setHidden(true);
+        albumDao.update(album);
+
+        List<Album> albums = albumDao.findAll();
+        return new ModelAndView("WEB-INF/albumoverviewadmin", "albums", albums);
+    }
+
+    @GetMapping("/showalbum/{id}")
+    public ModelAndView showalbum(@PathVariable("id") int id){
+        Album album = albumDao.find(id);
+        album.setHidden(false);
+        albumDao.update(album);
+
+        List<Album> albums = albumDao.findAll();
+        return new ModelAndView("WEB-INF/albumoverviewadmin", "albums", albums);
     }
 }
