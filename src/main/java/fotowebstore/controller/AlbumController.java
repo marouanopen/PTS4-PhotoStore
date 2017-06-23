@@ -60,6 +60,7 @@ public class AlbumController {
     @PostMapping("/photooverview")
     public ModelAndView photoOverview(@RequestParam("id") int id) {
         Album album = albumDao.find(id);
+
         return new ModelAndView("WEB-INF/photooverview", "album", album);
     }
 
@@ -137,6 +138,7 @@ public class AlbumController {
         //Set the image to the contents of the raster and close the inputstream
         image.setData(dest);
         input.close();
+
         return image;
     }
 }

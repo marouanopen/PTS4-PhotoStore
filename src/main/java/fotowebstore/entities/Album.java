@@ -36,6 +36,7 @@ public class Album {
         this.user = user;
         this.name = name;
         this.voucherCode = voucherCode;
+        user.getAlbums().add(this);
     }
 
     public User getUser() {

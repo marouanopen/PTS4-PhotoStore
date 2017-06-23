@@ -31,7 +31,7 @@ public class HomeController {
         return new ModelAndView("WEB-INF/main", "user", user);
     }
 
-    @RequestMapping("/shoppingCart")
+    @RequestMapping("/cart")
     public String shoppingCart() {
         return "WEB-INF/shoppingCart";
     }
