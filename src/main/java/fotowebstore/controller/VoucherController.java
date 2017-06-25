@@ -65,6 +65,7 @@ public class VoucherController {
         if (album.isHidden()) return false;
 
         albumDao.linkUserAndAlbum(user, album);
+        user.getVoucherAlbums().add(album);
 
         return true;
     }

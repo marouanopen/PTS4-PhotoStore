@@ -3,15 +3,8 @@
 <html>
 <head>
     <title>Photos in ${album.name}</title>
-    <style>
-        .image {
-            margin: 5% 0 0 5%;
-            width: 90%;
-            height: 90%;
-            background-size: cover;
-        }
-    </style>
-    <%@include file="/WEB-INF/loggedOutRedirect.jsp"%>
+    <link href="${pageContext.request.contextPath}/resources/css/photos.css" rel="stylesheet" type="text/css"/>
+    <%@include file="/WEB-INF/loggedOutRedirect.jsp" %>
 </head>
 <body>
 
@@ -23,11 +16,20 @@
 
 <c:forEach items="${album.photos}" var="photo">
     <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name})"></div>
-    <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post">
-        <input type="hidden" name="productId" value="${photo.id}"/>
-        <input type="hidden" name="type" value="photo"/>
-        <input type="submit" value="Add to shopping cart"/>
-    </form>
+    <c:if test="${sessionScope.get('userData').ID != album.user.ID}">
+        <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post">
+            <input type="hidden" name="productId" value="${photo.id}"/>
+            <input type="hidden" name="type" value="photo"/>
+            <input type="submit" value="Add to shopping cart"/>
+        </form>
+    </c:if>
+    <c:if test="${sessionScope.get('userData').ID == album.user.ID}">
+        <form action="${pageContext.request.contextPath}/changeprice" method="post">
+            <input type="hidden" name="id" value="${photo.id}"/>
+            <input type="text" name="price" placeholder="Price"/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </c:if>
 </c:forEach>
 </body>
 </html>

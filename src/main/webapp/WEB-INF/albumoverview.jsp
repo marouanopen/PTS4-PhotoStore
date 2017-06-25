@@ -4,23 +4,42 @@
 <head>
     <title>Album overview</title>
     <%@include file="/WEB-INF/loggedOutRedirect.jsp" %>
+    <link href="${pageContext.request.contextPath}/resources/css/albums.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<c:forEach items="${albums}" var="album">
-    <div style="width: 100px; height: 100px; border: 1px solid black;">
-        <p>${album.name}: ${album.photos.size()}</p>
-        <form action="${pageContext.request.contextPath}/photooverview" method="post">
-            <input type="hidden" name="id" value="${album.id}"/>
-            <input type="submit" value="Show"/>
-        </form>
-        <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post">
-            <input type="hidden" name="productId" value="${album.id}"/>
-            <input type="hidden" name="type" value="album"/>
-            <input type="submit" value="Add to shopping cart"/>
-        </form>
-    </div>
-</c:forEach>
 
+<h2>Your albums</h2>
+<div class="albums-container">
+    <c:forEach items="${albumMap.ownedAlbums}" var="album">
+        <c:set var="photo" value="${album.photos.get(0)}"/>
+        <div class="album" style="background-image:url(images/${photo.id}_pixelated_${photo.name})">
+            <p>${album.name}: ${album.photos.size()}</p>
+            <form action="${pageContext.request.contextPath}/photooverview" method="post">
+                <input type="hidden" name="id" value="${album.id}"/>
+                <input type="submit" value="Show"/>
+            </form>
+        </div>
+    </c:forEach>
+</div>
+
+<h2>Other albums</h2>
+<div class="albums-container">
+    <c:forEach items="${albumMap.voucherAlbums}" var="album">
+        <c:set var="photo" value="${album.photos.get(0)}"/>
+        <div class="album" style="background-image:url(images/${photo.id}_pixelated_${photo.name})">
+            <p>${album.name}: ${album.photos.size()}</p>
+            <form action="${pageContext.request.contextPath}/photooverview" method="post">
+                <input type="hidden" name="id" value="${album.id}"/>
+                <input type="submit" value="Show"/>
+            </form>
+            <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post">
+                <input type="hidden" name="productId" value="${album.id}"/>
+                <input type="hidden" name="type" value="album"/>
+                <input type="submit" value="Add to shopping cart"/>
+            </form>
+        </div>
+    </c:forEach>
+</div>
 <form action="${pageContext.request.contextPath}/createalbum" method="post">
     <input type="text" name="name" placeholder="Album name"/>
     <input type="submit" value="Create">

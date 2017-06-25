@@ -11,7 +11,8 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
     @ManyToOne
-    private User user;
+    @JoinColumn(name = "user_id")
+    private User owner;
     private String name;
     private boolean hidden;
     private String voucherCode;
@@ -32,19 +33,19 @@ public class Album {
         this.name = name;
     }
 
-    public Album(User user, String name, String voucherCode) {
-        this.user = user;
+    public Album(User owner, String name, String voucherCode) {
+        this.owner = owner;
         this.name = name;
         this.voucherCode = voucherCode;
-        user.getAlbums().add(this);
+        owner.getOwnedAlbums().add(this);
     }
 
     public User getUser() {
-        return user;
+        return owner;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.owner = user;
     }
 
     public String getVoucherCode() {
@@ -95,11 +96,11 @@ public class Album {
         this.hidden = hidden;
     }
 
-    @Override
-    public int hashCode() {
-        return getId() +
-                user.hashCode() +
-                name.hashCode() +
-                voucherCode.hashCode();
-    }
+//    @Override
+//    public int hashCode() {
+//        return getId() +
+//                owner.hashCode() +
+//                name.hashCode() +
+//                voucherCode.hashCode();
+//    }
 }

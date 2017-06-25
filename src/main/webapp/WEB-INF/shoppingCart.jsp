@@ -21,7 +21,8 @@
                          style="background-image:url(images/${product.id}_pixelated_${product.name})"></div>
                 </c:when>
             </c:choose>
-            <div class="shopping-cart-item-name">${product.name}</div>
+            <div class="shopping-cart-item-details">${product.name}</div>
+            <div class="shopping-cart-item-actions"></div>
         </div>
     </c:forEach>
 </div>

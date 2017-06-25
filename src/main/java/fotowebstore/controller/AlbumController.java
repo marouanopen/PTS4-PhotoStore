@@ -6,6 +6,7 @@ import fotowebstore.dao.UserDao;
 import fotowebstore.entities.Album;
 import fotowebstore.entities.Photo;
 import fotowebstore.entities.User;
+import fotowebstore.util.AlbumMap;
 import fotowebstore.util.SerialKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,9 +44,12 @@ public class AlbumController {
     @GetMapping("/albumoverview")
     public ModelAndView albumOverview() {
         User user = (User) session.getAttribute("userData");
-        Set<Album> albums = user.getAlbums();
+        Set<Album> voucherAlbums = user.getVoucherAlbums();
+        Set<Album> ownedAlbums = user.getOwnedAlbums();
 
-        return new ModelAndView("WEB-INF/albumoverview", "albums", albums);
+        AlbumMap albumMap = new AlbumMap(ownedAlbums, voucherAlbums);
+
+        return new ModelAndView("WEB-INF/albumoverview", "albumMap", albumMap);
     }
 
     @PostMapping("/createalbum")
@@ -62,6 +66,16 @@ public class AlbumController {
         Album album = albumDao.find(id);
 
         return new ModelAndView("WEB-INF/photooverview", "album", album);
+    }
+
+    @PostMapping("/changeprice")
+    public ModelAndView changePrice(@RequestParam("id") int id,
+                                    @RequestParam("price") double price) {
+        Photo photo = photoDao.find(id);
+        photo.setPrice(price);
+        photoDao.update(photo);
+
+        return new ModelAndView("WEB-INF/photooverview", "album", photo.getAlbum());
     }
 
     @PostMapping("/uploadfile")

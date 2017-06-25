@@ -33,7 +33,10 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "album_id")
     )
-    private Set<Album> albums;
+    private Set<Album> voucherAlbums;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Album> ownedAlbums;
+
     private boolean requesting;
 
 
@@ -172,12 +175,20 @@ public class User implements Serializable {
         return admin;
     }
 
-    public Set<Album> getAlbums() {
-        return albums;
+    public Set<Album> getVoucherAlbums() {
+        return voucherAlbums;
     }
 
-    public void setAlbums(Set<Album> albums) {
-        this.albums = albums;
+    public void setVoucherAlbums(Set<Album> voucherAlbums) {
+        this.voucherAlbums = voucherAlbums;
+    }
+
+    public Set<Album> getOwnedAlbums() {
+        return ownedAlbums;
+    }
+
+    public void setOwnedAlbums(Set<Album> ownedAlbums) {
+        this.ownedAlbums = ownedAlbums;
     }
 
     @Override
