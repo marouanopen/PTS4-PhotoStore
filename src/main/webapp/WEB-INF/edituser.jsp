@@ -38,7 +38,7 @@
 
 <div id="edit-container">
     <form action="${pageContext.request.contextPath}/edit" method="post"> <br/>
-        <label>ID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><input type="text" name="id" value="${user.ID}"/> <br/>
+        <label>ID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><input type="hidden" name="id" value="${user.ID}"/> <br/>
         <label>Name &nbsp; &nbsp; &nbsp;</label><input type="text" name="name" value="${user.name}"/> <br/>
         <label>Email &nbsp; &nbsp; &nbsp;</label><input type="email" name="email" value="${user.email}"/> <br/>
         <label>Street &nbsp; &nbsp; &nbsp; &nbsp;</label><input type="text" name="street" value="${user.street}"/> <br/>
