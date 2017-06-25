@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -52,7 +53,14 @@ public class LoginController {
                 if (hashedPassword.equals(user.getPassword())) {
                     session.setMaxInactiveInterval(1800);
                     session.setAttribute("userData", user);
-                    return new ModelAndView("WEB-INF/main", "user", user);
+                    if (user.getAdmin())
+                    {
+                        List<User> photographers = userDao.findAll();
+                        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+                    }
+                    else{
+                        return new ModelAndView("WEB-INF/main", "user", user);
+                    }
                 }
 
             } catch (NoSuchAlgorithmException e) {
