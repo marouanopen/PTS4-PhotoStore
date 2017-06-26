@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
@@ -54,12 +53,10 @@ public class LoginController {
                 if (hashedPassword.equals(user.getPassword())) {
                     session.setMaxInactiveInterval(1800);
                     session.setAttribute("userData", user);
-                    if (user.getAdmin())
-                    {
+                    if (user.getAdmin()) {
                         List<User> photographers = userDao.findAll();
                         return new ModelAndView("WEB-INF/overview", "photographers", photographers);
-                    }
-                    else{
+                    } else {
                         return new ModelAndView("WEB-INF/main", "user", user);
                     }
                 }
@@ -112,26 +109,26 @@ public class LoginController {
     }
 
     @GetMapping("/useroverview")
-    public ModelAndView userOverview(HttpSession session){
-
+    public ModelAndView userOverview(HttpSession session) {
         User user = (User) session.getAttribute("userData");
+
         return new ModelAndView("WEB-INF/useroverview", "user", user);
     }
 
     @PostMapping("/useroverview")
-    public ModelAndView requestPhotographer(HttpSession session)
-    {
+    public ModelAndView requestPhotographer(HttpSession session) {
         User user = (User) session.getAttribute("userData");
         user.setRequesting(true);
         userDao.update(user);
+
         return new ModelAndView("WEB-INF/useroverview", "user", user);
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
-
+    public String logout(HttpSession session) {
         session.removeAttribute("userData");
         session.removeAttribute("shoppingCart");
+
         return "WEB-INF/index";
     }
 }

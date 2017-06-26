@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -42,6 +43,9 @@
 </label><br>
 <label>
     <b>City:</b> ${user.city}
+</label><br>
+<label>
+    <b>Balance:</b> <fmt:formatNumber value="${user.balance}" type="currency"/>
 </label><br>
 
 <c:if test="${!user.photographer && !user.requesting}">

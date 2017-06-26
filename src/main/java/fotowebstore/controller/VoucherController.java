@@ -27,8 +27,8 @@ public class VoucherController {
     }
 
     @PostMapping("/email/voucher")
-    public String sendVoucherMail(@RequestParam("email") String email,
-                                  @RequestParam("voucherCode") String voucherCode) {
+    public ModelAndView sendVoucherMail(@RequestParam("email") String email,
+                                        @RequestParam("voucherCode") String voucherCode) {
         String lineSeparator = System.getProperty("line.separator");
         User user = (User) session.getAttribute("userData");
 
@@ -40,7 +40,8 @@ public class VoucherController {
                         "http://145.93.133.54:8080/voucher/" + voucherCode + lineSeparator + lineSeparator +
                         "Sincerely," + lineSeparator +
                         user.getName());
-        return "WEB-INF/overview";
+
+        return new ModelAndView("redirect:/albumoverview");
     }
 
     @GetMapping("/voucher/{vouchercode}")

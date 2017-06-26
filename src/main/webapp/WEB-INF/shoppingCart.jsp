@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +14,9 @@
 <body>
 <div id="shopping-cart-container">
     <c:set var="totalPrice" value="${0}"/>
-    <c:forEach items="${sessionScope.get('shoppingCart')}" var="product">
+    <c:set var="shoppingCart" value="${sessionScope.get('shoppingCart')}"/>
+
+    <c:forEach items="${shoppingCart}" var="product">
         <c:set var="totalPrice" value="${totalPrice + product.price}"/>
         <div class="shopping-cart-item-container">
             <c:choose>
@@ -32,14 +36,22 @@
             </div>
             <div class="shopping-cart-item-actions">
                 <a href="/cart/remove/${product.id}/${product['class'].simpleName}">
-                    <span class="glyphicon glyphicon-remove"></span>
+                    Remove from cart <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </div>
         </div>
     </c:forEach>
     <div class="shopping-cart-final">
-        <h3>Total: ${totalPrice}</h3>
-        <button type="submit" value="Proceed to payment"></button>
+        <c:if test="${fn:length(shoppingCart) == 0}">
+            <p>Your shopping cart is empty!</p>
+        </c:if>
+        <c:if test="${fn:length(shoppingCart) > 0}">
+            <form action="${pageContext.request.contextPath}/pay" method="post">
+                <h3>Total: <fmt:formatNumber value="${totalPrice}" type="currency"/></h3>
+                <button type="submit" class="btn btn-primary">Proceed to payment</button>
+            </form>
+
+        </c:if>
     </div>
 </div>
 </body>

@@ -36,7 +36,7 @@ public class User implements Serializable {
     private Set<Album> voucherAlbums;
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Album> ownedAlbums;
-
+    private double balance;
     private boolean requesting;
 
 
@@ -194,6 +194,14 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
 
