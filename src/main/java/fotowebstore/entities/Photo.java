@@ -69,12 +69,4 @@ public class Photo {
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
-
-    @Override
-    public int hashCode() {
-        return id +
-                name.hashCode() +
-                (int) price +
-                album.hashCode();
-    }
 }

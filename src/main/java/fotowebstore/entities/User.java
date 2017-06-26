@@ -195,18 +195,5 @@ public class User implements Serializable {
     public String toString() {
         return name;
     }
-
-    @Override
-    public int hashCode() {
-        return getID() +
-                name.hashCode() +
-                street.hashCode() +
-                city.hashCode() +
-                houseNumber.hashCode() +
-                zipCode.hashCode() +
-                email.hashCode() +
-                password.hashCode() +
-                salt.hashCode();
-    }
 }
 

@@ -18,22 +18,21 @@
     float: left;
     background-size: cover;
     height: 100%;
-    width: 300px;
+    width: 25%;
 }
 
 .shopping-cart-item-details {
     padding-left: 25px;
     float: left;;
     height: 190px;
-    width: 500px;
-    border: 1px solid black;
+    width: 37.5%;
+    text-align: center;
 }
 
 .shopping-cart-item-actions {
     padding-left: 25px;
     float: left;
     height: 190px;
-    width: 500px;
-    border: 1px solid black;
+    width: 37.5%;
 }
 

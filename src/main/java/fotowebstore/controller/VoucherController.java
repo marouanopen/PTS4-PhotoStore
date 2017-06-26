@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,17 +44,17 @@ public class VoucherController {
     }
 
     @GetMapping("/voucher/{vouchercode}")
-    public String voucherFromLink(@PathVariable("vouchercode") String voucherCode) {
+    public ModelAndView voucherFromLink(@PathVariable("vouchercode") String voucherCode) {
         useVoucherCode(voucherCode);
 
-        return "WEB-INF/albumoverview";
+        return new ModelAndView("redirect:/albumoverview");
     }
 
     @PostMapping("/voucher")
-    public String voucherFromPOST(@RequestParam("vouchercode") String voucherCode) {
+    public ModelAndView voucherFromPOST(@RequestParam("vouchercode") String voucherCode) {
         useVoucherCode(voucherCode);
 
-        return "WEB-INF/albumoverview";
+        return new ModelAndView("redirect:/albumoverview");
     }
 
     private boolean useVoucherCode(String voucherCode) {

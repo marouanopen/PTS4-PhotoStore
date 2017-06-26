@@ -26,7 +26,7 @@
 <h2>Your albums</h2>
 <div class="albums-container">
     <c:forEach items="${albumMap.ownedAlbums}" var="album">
-        <c:set var="photo" value="${album.photos.get(0)}"/>
+        <c:set var="photo" value="${album.photos.iterator().next()}"/>
         <div class="album" style="background-image:url(images/${photo.id}_pixelated_${photo.name})">
             <p>${album.name}: ${album.photos.size()}</p>
             <form action="${pageContext.request.contextPath}/photooverview" method="post">
@@ -40,7 +40,7 @@
 <h2>Other albums</h2>
 <div class="albums-container">
     <c:forEach items="${albumMap.voucherAlbums}" var="album">
-        <c:set var="photo" value="${album.photos.get(0)}"/>
+        <c:set var="photo" value="${album.photos.iterator().next()}"/>
         <div class="album" style="background-image:url(images/${photo.id}_pixelated_${photo.name})">
             <p>${album.name}: ${album.photos.size()}</p>
             <form action="${pageContext.request.contextPath}/photooverview" method="post">

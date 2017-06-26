@@ -1,7 +1,6 @@
 package fotowebstore.entities;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +16,8 @@ public class Album {
     private boolean hidden;
     private String voucherCode;
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
-    private List<Photo> photos;
+    @OrderBy
+    private Set<Photo> photos;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_album",
@@ -56,11 +56,11 @@ public class Album {
         this.voucherCode = voucherCode;
     }
 
-    public List<Photo> getPhotos() {
+    public Set<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<Photo> photos) {
+    public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
     }
 
@@ -96,11 +96,11 @@ public class Album {
         this.hidden = hidden;
     }
 
-//    @Override
-//    public int hashCode() {
-//        return getId() +
-//                owner.hashCode() +
-//                name.hashCode() +
-//                voucherCode.hashCode();
-//    }
+    public double getPrice() {
+        double price = 0;
+        for (Photo photo : photos)
+            price += photo.getPrice();
+
+        return price;
+    }
 }
