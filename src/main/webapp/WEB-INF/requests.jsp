@@ -16,14 +16,18 @@
           crossorigin="anonymous">
 </head>
 <body>
-<h>Photographer requests</h>
-<br><br>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="/overview">Photographers</a></li>
+    <li role="presentation" class="active"><a href="/#">Photographer Requests</a></li>
+    <li role="presentation"><a href="/albumoverviewadmin">Albums</a></li>
+    <li role="presentation"><a href="/photooverviewadmin">Photos</a></li>
+</ul>
 <div id="request-container">
     <form>
-<table>
+<table style="width: 15px;float: left" class="table table-hover">
 <tr>
     <th>Username</th>
-    <th>| Request</th>
+    <th>Request</th>
 </tr>
     <c:forEach items="${users}" var="user">
         <tr>

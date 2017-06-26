@@ -13,13 +13,7 @@
 
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="/main">Home</a></li>
-    <li role="presentation"><a href="/photooverview">Photos</a></li>
-    <c:if test="${sessionScope.get('userData').photographer}">
-        <li role="presentation" class="active"><a href="/albumoverview">Album overview</a></li>
-    </c:if>
-    <c:if test="${!sessionScope.get('userData').photographer}">
-        <li role="presentation"><a href="/albumoverview">Redeem Voucher</a></li>
-    </c:if>
+    <li role="presentation" class="active"><a href="/albumoverview">Album overview</a></li>
     <li role="presentation"><a href="/useroverview">Profile</a></li>
 </ul>
 
