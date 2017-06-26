@@ -1,57 +1,161 @@
 package fotowebstore.controller;
 
-import fotowebstore.models.*;
+import fotowebstore.dao.AlbumDao;
+import fotowebstore.dao.PhotoDao;
+import fotowebstore.dao.PhotoDaoImplHibernate;
+import fotowebstore.dao.UserDao;
+import fotowebstore.entities.Album;
+import fotowebstore.entities.Photo;
+import fotowebstore.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.Path;
+import java.util.List;
 
-/**
- * Created by Arjan on 25-3-2017.
- */
 @Controller
 public class AdminController {
 
+    private final UserDao userDao;
+    private final PhotoDao photoDao;
+    private final AlbumDao albumDao;
+
+    @Autowired
+    public AdminController(UserDao userDao, PhotoDao photoDao, AlbumDao albumDao){
+        this.userDao = userDao;
+        this.photoDao = photoDao;
+        this.albumDao = albumDao;
+    }
+
+    @GetMapping("/requests")
+    public ModelAndView requests(){
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
+    }
+
+    @RequestMapping("/accept/{id}")
+    public ModelAndView accept(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
+        user.setRequesting(false);
+        user.setPhotographer(true);
+        userDao.update(user);
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
+    }
+
+    @RequestMapping("/deny/{id}")
+    public ModelAndView deny(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
+        user.setRequesting(false);
+        userDao.update(user);
+
+        List<User> photographerRequests = userDao.findPhotographerRequests();
+        return new ModelAndView("WEB-INF/requests", "users", photographerRequests);
+    }
+
     @RequestMapping("/overview")
     public ModelAndView overview(){
-        ArrayList<User> users = new ArrayList<User>();
 
-        //Testcode
-        User user1 = new User("Persoon1", "Adres1", 1, "1100","Stad1", "email@email.com", "password");
-        User user2 = new User("Persoon2", "Adres2", 2, "1100","Stad2", "email@email.com", "password");
-        User user3 = new User("Persoon3", "Adres3", 3, "1100","Stad3", "email@email.com", "password");
-        User user4 = new User("Persoon4", "Adres4", 4, "1100","Stad4", "email@email.com", "password");
+        List<User> photographers = userDao.findAll();
+        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+    }
 
-        //Change status to true
-        user1.changePhotographerStatus();
-        user2.changePhotographerStatus();
-        user4.changePhotographerStatus();
+    @RequestMapping("/remove/{id}")
+    public ModelAndView remove(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
+        userDao.remove(user);
 
-        //Create Product for user4
-        ArrayList<Photo> photos = new ArrayList<Photo>();
-        photos.add(new Photo(12));
-        user4.addProduct(new Product(12, photos));
+        List<User> photographers = userDao.findAll();
+        return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+    }
 
-        //Add users to list
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable("id") int id) {
+        User user = userDao.findById(id);
 
-        ArrayList<User> photographers = new ArrayList<User>();
-        for (User user : users) {
-            if (user.getPhotographer() == true){
-                photographers.add(user);
-            }
+        return new ModelAndView("WEB-INF/edituser", "user", user);
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView edituser(HttpSession session,
+                                 @RequestBody MultiValueMap<String, String> form) {
+
+        try {
+            User user = userDao.findById(Integer.valueOf(form.getFirst("id")));
+            user.setName(form.getFirst("name"));
+            user.setEmail(form.getFirst("email"));
+            user.setStreet(form.getFirst("street"));
+            user.setHouseNumber(form.getFirst("housenumber"));
+            user.setZipCode(form.getFirst("zipcode"));
+            user.setCity(form.getFirst("city"));
+
+            userDao.update(user);
+
+            List<User> photographers = userDao.findAll();
+            return new ModelAndView("WEB-INF/overview", "photographers", photographers);
+        } catch (Exception ex){
+            ex.printStackTrace();
+
+            List<User> photographers = userDao.findAll();
+            return new ModelAndView("WEB-INF/overview", "photographers", photographers);
         }
+    }
 
-        //Niet werkende code. Test om List Users + User mee te geven aan de View
-        Map<Object, ArrayList<User>> model = new HashMap<Object, ArrayList<User>>();
-        model.put(user1, users);
+    @RequestMapping("/photooverviewadmin")
+    public ModelAndView photooverviewadmin(){
 
-        return new ModelAndView("overview", "photographers", photographers);
+        List<Photo> photos = photoDao.findAll();
+        return new ModelAndView("WEB-INF/photooverviewadmin", "photos", photos);
+    }
+
+    @GetMapping("/hide/{id}")
+    public ModelAndView hide(@PathVariable("id") int id){
+        Photo photo = photoDao.find(id);
+        photo.setHidden(true);
+        photoDao.update(photo);
+
+        List<Photo> photos = photoDao.findAll();
+        return new ModelAndView("WEB-INF/photooverviewadmin", "photos", photos);
+    }
+
+    @GetMapping("/show/{id}")
+    public ModelAndView show(@PathVariable("id") int id){
+        Photo photo = photoDao.find(id);
+        photo.setHidden(false);
+        photoDao.update(photo);
+
+        List<Photo> photos = photoDao.findAll();
+        return new ModelAndView("WEB-INF/photooverviewadmin", "photos", photos);
+    }
+
+    @RequestMapping("/albumoverviewadmin")
+    public ModelAndView albumoverviewadmin(){
+
+        List<Album> albums = albumDao.findAll();
+        return new ModelAndView("WEB-INF/albumoverviewadmin", "albums", albums);
+    }
+
+    @GetMapping("/hidealbum/{id}")
+    public ModelAndView hidealbum(@PathVariable("id") int id){
+        Album album = albumDao.find(id);
+        album.setHidden(true);
+        albumDao.update(album);
+
+        List<Album> albums = albumDao.findAll();
+        return new ModelAndView("WEB-INF/albumoverviewadmin", "albums", albums);
+    }
+
+    @GetMapping("/showalbum/{id}")
+    public ModelAndView showalbum(@PathVariable("id") int id){
+        Album album = albumDao.find(id);
+        album.setHidden(false);
+        albumDao.update(album);
+
+        List<Album> albums = albumDao.findAll();
+        return new ModelAndView("WEB-INF/albumoverviewadmin", "albums", albums);
     }
 }

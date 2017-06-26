@@ -1,0 +1,29 @@
+h2 {
+    text-align: center;
+}
+
+h2::after {
+    content: '';
+    height: 2px;
+    width: 90%;
+    background: gray;
+    left: 5%;
+    margin-top: 35px;
+    position: absolute;
+}
+
+.albums-container {
+    width: 90%;
+    min-height: 220px;
+    margin-left: 5%;
+    overflow: auto;
+}
+
+.album {
+    float: left;
+    margin: 10px 10px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    background-size: cover;
+}
