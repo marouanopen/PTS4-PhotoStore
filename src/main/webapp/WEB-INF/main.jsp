@@ -12,6 +12,7 @@
     <li role="presentation" class="active"><a href="#">Home</a></li>
     <li role="presentation"><a href="/albumoverview">Album overview</a></li>
     <li role="presentation"><a href="/useroverview">Profile</a></li>
+    <li role="presentation"><a href="/logout">Logout</a></li>
 </ul>
 
 <p>Welcome ${user.name} !</p>
