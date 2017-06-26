@@ -2,11 +2,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
     <title>Photos in ${album.name}</title>
     <link href="${pageContext.request.contextPath}/resources/css/photos.css" rel="stylesheet" type="text/css"/>
     <%@include file="/WEB-INF/loggedOutRedirect.jsp" %>
 </head>
 <body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/albumoverview">Album overview</a></li>
+    <li role="presentation"><a href="/useroverview">Profile</a></li>
+    <li class="glyphicon glyphicon-shopping-cart"><a href="/cart"></a></li>
+    <li role="presentation"><a href="/logout">Logout</a></li>
+</ul>
 
 <form action="${pageContext.request.contextPath}/email/voucher" method="post">
     <input type="email" name="email" placeholder="E-mail"/>

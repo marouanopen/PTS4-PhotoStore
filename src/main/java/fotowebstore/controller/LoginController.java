@@ -57,7 +57,7 @@ public class LoginController {
                         List<User> photographers = userDao.findAll();
                         return new ModelAndView("WEB-INF/overview", "photographers", photographers);
                     } else {
-                        return new ModelAndView("WEB-INF/main", "user", user);
+                        return new ModelAndView("redirect:/albumoverview");
                     }
                 }
 
