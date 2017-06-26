@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
@@ -124,5 +125,13 @@ public class LoginController {
         user.setRequesting(true);
         userDao.update(user);
         return new ModelAndView("WEB-INF/useroverview", "user", user);
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+
+        session.removeAttribute("userData");
+        session.removeAttribute("shoppingCart");
+        return "WEB-INF/index";
     }
 }

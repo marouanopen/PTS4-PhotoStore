@@ -42,6 +42,7 @@
     <li role="presentation"><a href="/requests">Photographer Requests</a></li>
     <li role="presentation"><a href="/albumoverviewadmin">Albums</a></li>
     <li role="presentation"><a href="/photooverviewadmin">Photos</a></li>
+    <li role="presentation"><a href="/logout">Logout</a></li>
 </ul>
 <table style="width: 15px;float: left" class="table table-hover">
 <tr>

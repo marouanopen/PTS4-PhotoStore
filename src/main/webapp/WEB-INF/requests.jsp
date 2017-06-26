@@ -21,6 +21,7 @@
     <li role="presentation" class="active"><a href="/#">Photographer Requests</a></li>
     <li role="presentation"><a href="/albumoverviewadmin">Albums</a></li>
     <li role="presentation"><a href="/photooverviewadmin">Photos</a></li>
+    <li role="presentation"><a href="/logout">Logout</a></li>
 </ul>
 <div id="request-container">
     <form>
