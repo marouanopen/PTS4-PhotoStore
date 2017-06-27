@@ -36,7 +36,7 @@
         <c:if test="${sessionScope.get('userData').ID == album.user.ID}">
             <form action="${pageContext.request.contextPath}/changeprice" method="post" style="margin-top: 200px;">
                 <input type="hidden" name="id" value="${photo.id}"/>
-                <input type="text" name="price" placeholder="Price"/>
+                <input type="text" name="price" value="${photo.price}" placeholder="Price"/>
                 <input type="submit" value="Submit"/>
             </form>
         </c:if>
