@@ -10,11 +10,16 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"/>
     <link href="${pageContext.request.contextPath}/resources/css/cart.css" rel="stylesheet" type="text/css"/>
+    <%@include file="/WEB-INF/loggedOutRedirect.jsp" %>
 </head>
 <body>
 <div id="shopping-cart-container">
     <c:set var="totalPrice" value="${0}"/>
     <c:set var="shoppingCart" value="${sessionScope.get('shoppingCart')}"/>
+
+    <c:if test="${fn:length(shoppingCart) == 0}">
+        <p>Your shopping cart is empty!</p>
+    </c:if>
 
     <c:forEach items="${shoppingCart}" var="product">
         <c:set var="totalPrice" value="${totalPrice + product.price}"/>
@@ -42,9 +47,6 @@
         </div>
     </c:forEach>
     <div class="shopping-cart-final">
-        <c:if test="${fn:length(shoppingCart) == 0}">
-            <p>Your shopping cart is empty!</p>
-        </c:if>
         <c:if test="${fn:length(shoppingCart) > 0}">
             <form action="${pageContext.request.contextPath}/pay" method="post">
                 <h3>Total: <fmt:formatNumber value="${totalPrice}" type="currency"/></h3>

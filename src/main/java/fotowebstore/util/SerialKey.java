@@ -6,11 +6,11 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
 
-
 public class SerialKey {
 
     public static String generate() {
         String key = null;
+
         try {
             KeyGenerator generator = KeyGenerator.getInstance("AES");
             generator.init(256);
@@ -19,6 +19,8 @@ public class SerialKey {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
+        key = key.replace("/", "").replace("\\", "");
 
         return key;
     }

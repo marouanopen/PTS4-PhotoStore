@@ -37,7 +37,7 @@ public class VoucherController {
                 "Hello," + lineSeparator + lineSeparator +
                         "The album has been finished and uploaded to the website!" + lineSeparator +
                         "Click this link to add it to your account for viewing and buying!" + lineSeparator +
-                        "http://145.93.133.54:8080/voucher/" + voucherCode + lineSeparator + lineSeparator +
+                        "http://localhost:8080/voucher/" + voucherCode + lineSeparator + lineSeparator +
                         "Sincerely," + lineSeparator +
                         user.getName());
 

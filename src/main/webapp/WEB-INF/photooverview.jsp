@@ -11,7 +11,7 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="/albumoverview">Album overview</a></li>
+    <li role="presentation"><a href="/albumoverview">Album overview</a></li>
     <li role="presentation"><a href="/useroverview">Profile</a></li>
     <li class="glyphicon glyphicon-shopping-cart"><a href="/cart"></a></li>
     <li role="presentation"><a href="/logout">Logout</a></li>
@@ -24,21 +24,23 @@
 </form>
 
 <c:forEach items="${album.photos}" var="photo">
-    <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name})"></div>
-    <c:if test="${sessionScope.get('userData').ID != album.user.ID}">
-        <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post">
-            <input type="hidden" name="productId" value="${photo.id}"/>
-            <input type="hidden" name="type" value="photo"/>
-            <input type="submit" value="Add to shopping cart"/>
-        </form>
-    </c:if>
-    <c:if test="${sessionScope.get('userData').ID == album.user.ID}">
-        <form action="${pageContext.request.contextPath}/changeprice" method="post">
-            <input type="hidden" name="id" value="${photo.id}"/>
-            <input type="text" name="price" placeholder="Price"/>
-            <input type="submit" value="Submit"/>
-        </form>
-    </c:if>
+    <div class="image" style="background-image:url(images/${photo.id}_pixelated_${photo.name})">
+        <c:if test="${sessionScope.get('userData').ID != album.user.ID}">
+            <form action="${pageContext.request.contextPath}/addToShoppingCart" method="post"
+                  style="margin-top: 200px;">
+                <input type="hidden" name="productId" value="${photo.id}"/>
+                <input type="hidden" name="type" value="photo"/>
+                <input type="submit" value="Add to shopping cart"/>
+            </form>
+        </c:if>
+        <c:if test="${sessionScope.get('userData').ID == album.user.ID}">
+            <form action="${pageContext.request.contextPath}/changeprice" method="post" style="margin-top: 200px;">
+                <input type="hidden" name="id" value="${photo.id}"/>
+                <input type="text" name="price" placeholder="Price"/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </c:if>
+    </div>
 </c:forEach>
 </body>
 </html>

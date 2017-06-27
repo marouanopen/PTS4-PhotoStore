@@ -4,35 +4,43 @@
 <html>
 <head>
     <title>Welcome to the photo webstore!</title>
-    <link href="${pageContext.request.contextPath}/css/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/resources/css/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <c:if test="${sessionScope.get('userData') != null}">
+        <c:redirect url="/main"/>
+    </c:if>
 </head>
 <body>
 
-<div id="login-container">
-    <form action="${pageContext.request.contextPath}/login" method="post">
-        <input type="email" name="email" placeholder="E-mail"/> <br/>
-        <input type="password" name="password" placeholder="Password"/> <br/>
-        <input type="submit" value="Log in"/>
-    </form>
-</div>
+<div id="main">
+    <div id="login" class="form-container">
+        <h3>Login</h3>
+        <form  action="${pageContext.request.contextPath}/login" method="post">
+            <input type="email" name="email" placeholder="E-mail"/>
+            <input type="password" name="password" placeholder="Password"/> <br/>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
 
-<div id="register-container">
-    <form action="${pageContext.request.contextPath}/register" method="post"> <br/>
-        <input type="text" name="name" placeholder="Name"/> <br/>
-        <input type="email" name="email" placeholder="Email"/> <br/>
-        <input type="password" name="password" placeholder="Password"/> <br/>
-        <input type="text" name="city" placeholder="City"/> <br/>
-        <input type="text" name="street" placeholder="Street"/> <br/>
-        <input type="text" name="zipcode" placeholder="Zipcode"/> <br/>
-        <input type="text" name="housenumber" placeholder="House number"/> <br/>
-        <input type="submit" value="Submit">
-    </form>
+    <div id="register" class="form-container">
+        <h3>Register</h3>
+        <form action="${pageContext.request.contextPath}/register" method="post">
+            <input type="text" name="name" placeholder="Name"/>
+            <input type="email" name="email" placeholder="Email"/>
+            <input type="password" name="password" placeholder="Password"/>
+            <input type="text" name="city" placeholder="City"/>
+            <input type="text" name="street" placeholder="Street"/>
+            <input type="text" name="zipcode" placeholder="Zipcode"/>
+            <input type="text" name="housenumber" placeholder="House number"/> <br/>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
 </div>
-
-<br/>
 
 <c:choose>
-    <c:when test= "${loginStatus == 'FAILED'}">
+    <c:when test="${loginStatus == 'FAILED'}">
         <p style="color: red;">The password or email address that you entered is invalid!</p>
     </c:when>
     <c:when test="${loginStatus == 'DUPLICATE_EMAIL'}">

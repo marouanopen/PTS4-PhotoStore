@@ -6,6 +6,13 @@
     <%@include file="/WEB-INF/loggedOutRedirect.jsp"%>
 </head>
 <body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/albumoverview">Album overview</a></li>
+    <li role="presentation"><a href="/useroverview">Profile</a></li>
+    <li class="glyphicon glyphicon-shopping-cart"><a href="/cart"></a></li>
+    <li role="presentation"><a href="/logout">Logout</a></li>
+</ul>
+
 <p>${album.name}</p>
 
 <c:forEach items="${album.photos}" var="photo">
